@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ambow.dao.CategoryDao" >
+    <resultMap id="categoryResultMap" type="com.ambow.pojo.Category" >
+        <id column="cid" property="cid" jdbcType="INTEGER" />
+        <result column="cname" property="cname" jdbcType="VARCHAR" />
+        <result column="state" property="state" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="getAllCategory"  resultType="com.ambow.pojo.Category">
+        select * from category  where state=1;
+    </select>
+
+    <select id="getCategoryName" parameterType="java.lang.Integer" resultType="com.ambow.pojo.Category">
+        select * from category where  cid=#{cid}
+    </select>
+
+    <select id="getAdminCategory"  resultType="com.ambow.pojo.Category">
+        select * from category ;
+    </select>
+
+    <select id="getCartegortByCid" parameterType="java.lang.Integer" resultType="com.ambow.pojo.Category">
+        select  * from category where cid=#{cid}
+    </select>
+
+    <update id="updateCategory"  parameterType="com.ambow.pojo.Category" >
+        update category set cname=#{cname},state=#{state} where cid=#{cid}
+    </update>
+
+    <insert id="addCategory" parameterType="com.ambow.pojo.Category">
+        insert  into category(cname,state)values (#{cname},#{state})
+    </insert>
+
+
+</mapper>

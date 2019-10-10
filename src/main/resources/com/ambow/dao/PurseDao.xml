@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ambow.dao.PuresDao" >
+    <resultMap id="purseResultMap" type="com.ambow.pojo.Purse" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_id" property="user_id" jdbcType="VARCHAR" />
+        <result column="balance" property="balance" jdbcType="FLOAT" />
+
+
+    </resultMap>
+
+    <select id="getPurseByUserId" parameterType="java.lang.String" resultType="com.ambow.pojo.Purse">
+        select * from purse where user_id=#{user_id,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updatePurse" parameterType="com.ambow.pojo.Purse" >
+        update purse set balance=#{balance,jdbcType=FLOAT} where user_id = #{user_id,jdbcType=INTEGER}
+    </update>
+    <select id="selectPurseByuid" parameterType="java.lang.String" resultType="com.ambow.pojo.Purse">
+        select * from purse where user_id=#{user_id,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="addPurse" parameterType="com.ambow.pojo.Purse">
+        INSERT  INTO purse (user_id,balance)value (#{user_id},#{balance})
+    </insert>
+
+
+
+
+</mapper>

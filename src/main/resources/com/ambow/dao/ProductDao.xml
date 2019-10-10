@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ambow.dao.ProductDao" >
+    <resultMap id="productResultMap" type="com.ambow.pojo.Product" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="cid" property="cid" jdbcType="INTEGER" />
+        <result column="user_id" property="user_id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="image" property="image" jdbcType="VARCHAR" />
+        <result column="price" property="price" jdbcType="FLOAT" />
+        <result column="start_time" property="start_time" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="describle" property="describle" jdbcType="VARCHAR" />
+        <association property="user" javaType="com.ambow.pojo.User">
+            <id column="user_id" property="user_id" jdbcType="VARCHAR" />
+            <result column="username" property="username" jdbcType="VARCHAR" />
+            <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+            <result column="password" property="password" jdbcType="VARCHAR" />
+            <result column="email" property="email" jdbcType="VARCHAR" />
+            <result column="QQ" property="qq" jdbcType="VARCHAR" />
+            <result column="createdate" property="createdate" jdbcType="VARCHAR" />
+            <result column="state" property="state" jdbcType="INTEGER" />
+            <result column="conditions" property="conditions" jdbcType="VARCHAR" />
+        </association>
+        <association property="category" javaType="com.ambow.pojo.Category" >
+            <id column="cid" property="cid" jdbcType="INTEGER" />
+            <result column="cname" property="cname" jdbcType="VARCHAR" />
+        </association>
+
+    </resultMap>
+
+    <select id="getAllProduct"  resultType="com.ambow.pojo.Product">
+        select * from products where status=1 ORDER BY start_time desc LIMIT 0,16
+    </select>
+
+    <select id="getAllProductBycid"  parameterType="java.lang.Integer" resultType="com.ambow.pojo.Product">
+        select * from products where status=1 and cid=#{cid}
+    </select>
+
+    <select id="getProductBypid"  parameterType="java.lang.Integer" resultType="com.ambow.pojo.Product">
+        select * from products where status=1 and id=#{id}
+    </select>
+
+    <select id="getMyProducrByUid"  parameterType="java.lang.String" resultType="com.ambow.pojo.Product">
+        select * from products where status=1 and user_id=#{user_id}
+    </select>
+    <insert id="pubMyproduct" parameterType="com.ambow.pojo.Product">
+        insert into products (cid,user_id, name, image,
+      price, start_time,describle, status)
+    values (#{cid,jdbcType=INTEGER},#{user_id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR},
+      #{price,jdbcType=FLOAT}, #{start_time,jdbcType=VARCHAR},#{describle,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER})
+    </insert>
+    
+    <select id="getProductUserBypid" parameterType="java.lang.Integer" resultMap="productResultMap">
+        select u.*,p.*from user u,products p where u.user_id=p.user_id and p.id=#{id}
+    </select>
+
+    <select id="getAllProducts" parameterType="java.lang.Integer" resultMap="productResultMap">
+        select c.*,p.*from category c,products p where c.cid=p.cid
+    </select>
+
+    <select id="getAllProductBypid"  parameterType="java.lang.Integer" resultType="com.ambow.pojo.Product">
+        select p.* ,c.* from products p,category c where c.cid=p.cid and p.id=#{id}
+    </select>
+
+
+    <update id="updateProduct" parameterType="com.ambow.pojo.Product">
+        update products set cid=#{cid},user_id=#{user_id},name=#{name},image=#{image},price=#{price},start_time=#{start_time},
+        describle=#{describle},status=#{status} where id=#{id}
+    </update>
+
+
+    <select id="likeProduct" parameterType="java.lang.String" resultType="com.ambow.pojo.Product">
+        select * from products where name like "%"#{name}"%"
+    </select>
+
+
+
+
+
+
+
+
+</mapper>

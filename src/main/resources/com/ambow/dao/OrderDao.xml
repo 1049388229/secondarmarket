@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ambow.dao.OrderDao" >
+    <resultMap id="orderResultMap" type="com.ambow.pojo.Order" >
+        <id column="oid" property="oid" jdbcType="VARCHAR" />
+        <result column="pid" property="pid" jdbcType="INTEGER" />
+        <result column="order_price" property="order_price" jdbcType="FLOAT"/>
+        <result column="buy_uid" property="buy_uid" jdbcType="VARCHAR" />
+        <result column="sell_uid" property="sell_uid" jdbcType="VARCHAR"/>
+        <result column="order_date" property="order_date" jdbcType="VARCHAR"/>
+        <result column="dealAddress" property="dealAddress" jdbcType="VARCHAR"/>
+        <result column="dealdate" property="dealdate" jdbcType="VARCHAR"/>
+        <result column="order_state" property="order_state" jdbcType="VARCHAR"/>
+        <association property="user"  javaType="com.ambow.pojo.User">
+            <id column="user_id" property="user_id" jdbcType="VARCHAR" />
+            <result column="username" property="username" jdbcType="VARCHAR" />
+            <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+            <result column="password" property="password" jdbcType="VARCHAR" />
+            <result column="email" property="email" jdbcType="VARCHAR" />
+            <result column="QQ" property="qq" jdbcType="VARCHAR" />
+            <result column="createdate" property="createdate" jdbcType="VARCHAR" />
+            <result column="state" property="state" jdbcType="INTEGER" />
+            <result column="conditions" property="conditions" jdbcType="VARCHAR" />
+        </association>
+        <association property="product" javaType="com.ambow.pojo.Product">
+            <id column="id" property="id" jdbcType="INTEGER" />
+            <result column="cid" property="cid" jdbcType="INTEGER" />
+            <result column="user_id" property="user_id" jdbcType="VARCHAR" />
+            <result column="name" property="name" jdbcType="VARCHAR" />
+            <result column="image" property="image" jdbcType="VARCHAR" />
+            <result column="price" property="price" jdbcType="FLOAT" />
+
+            <result column="start_time" property="start_time" jdbcType="VARCHAR" />
+
+            <result column="status" property="status" jdbcType="INTEGER" />
+            <result column="describle" property="describle" jdbcType="VARCHAR" />
+        </association>
+
+    </resultMap>
+
+
+    <select id="getMybuyOrder" resultMap="orderResultMap">
+
+       select u.*,n.*,p.* from orders n,user u,products p where n.pid=p.id  and n.sell_uid = u.user_id and n.buy_uid=#{uid} and order by order_date desc
+    </select>
+    <select id="getMysellOrder" resultMap="orderResultMap">
+select u.*,n.*,p.* from orders n,user u,products p where n.pid=p.id  and n.buy_uid = u.user_id and n.sell_uid=#{uid} order by order_date desc
+
+    </select>
+
+    <insert id="addOrder" parameterType="com.ambow.pojo.Order">
+         insert into orders(oid,pid, order_price,buy_uid, sell_uid,dealdate,dealAddress,
+      order_date,order_state)
+    values (#{oid,jdbcType=VARCHAR},#{pid,jdbcType=INTEGER},#{order_price,jdbcType=FLOAT}, #{buy_uid,jdbcType=VARCHAR}, #{sell_uid,jdbcType=VARCHAR},
+      #{dealdate,jdbcType=VARCHAR},#{dealAddress,jdbcType=VARCHAR},#{order_date,jdbcType=VARCHAR},#{order_state,jdbcType=INTEGER})
+    </insert>
+    
+    <select id="selectOrderByOid" parameterType="java.lang.String" resultType="com.ambow.pojo.Order">
+        select * from orders where oid=#{oid}
+    </select>
+    
+    <update id="updateOrder" parameterType="com.ambow.pojo.Order">
+        update orders set dealdate=#{dealdate}, dealAddress=#{dealAddress},order_state=#{order_state} where oid=#{oid}
+    </update>
+    
+    <select id="getAllOrder" resultType="orderResultMap">
+        select u.*,n.*,p.* from orders n,user u,products p
+    </select>
+
+
+
+
+</mapper>

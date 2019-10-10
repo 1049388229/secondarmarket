@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ambow.dao.UserDao" >
+    <resultMap id="userResultMap" type="com.ambow.pojo.User" >
+        <id column="user_id" property="user_id" jdbcType="VARCHAR" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="QQ" property="qq" jdbcType="VARCHAR" />
+        <result column="createdate" property="createdate" jdbcType="VARCHAR" />
+        <result column="state" property="state" jdbcType="INTEGER" />
+
+        <result column="condition" property="condition" jdbcType="VARCHAR" />
+        <result column="activecode" property="activecode" jdbcType="VARCHAR" />
+
+    </resultMap>
+
+    <select id="activeUser" parameterType="java.lang.String" resultType="com.ambow.pojo.User">
+        select * from user where activecode=#{activeCode,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updateUser" parameterType="com.ambow.pojo.User" >
+        update user set username=#{username,jdbcType=VARCHAR}, telephone=#{telephone,jdbcType=VARCHAR},
+     password=#{password,jdbcType=VARCHAR}, email=#{email,jdbcType=VARCHAR},qq=#{qq,jdbcType=VARCHAR}, createdate=#{createdate,jdbcType=VARCHAR},
+    createdate=#{createdate,jdbcType=INTEGER},state=#{state,jdbcType=VARCHAR},conditions=#{conditions,jdbcType=VARCHAR} where  user_id=#{user_id,jdbcType=VARCHAR};
+    </update>
+
+    <insert id="userRegist" parameterType="com.ambow.pojo.User" useGeneratedKeys="true" keyProperty="id">
+    insert into user (user_id, username, telephone,
+      password, email,QQ, createdate,
+      state,activecode,conditions)
+    values (#{user_id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},#{qq,jdbcType=VARCHAR}, #{createdate,jdbcType=VARCHAR},
+      #{state,jdbcType=INTEGER},#{activeCode,jdbcType=VARCHAR},#{conditions,jdbcType=VARCHAR})
+  </insert>
+
+
+    <select id="checkTelephone" parameterType="java.lang.String" resultType="java.lang.Long">
+        select count(*) from user where telephone=#{telephone}
+    </select>
+
+    <select id="userLogin" parameterType="java.lang.String" resultType="com.ambow.pojo.User">
+        select * from user where telephone=#{telephone} and  password=#{password}
+    </select>
+
+    <select id="getAllUser"  resultType="com.ambow.pojo.User">
+        select * from user
+    </select>
+
+    <select id="selectUserbyid" parameterType="java.lang.String" resultType="com.ambow.pojo.User">
+        select * from user where user_id=#{id}
+    </select>
+
+    <delete id="deletUser" parameterType="java.lang.String">
+        delete from user where user_id=#{uid}
+    </delete>
+
+    <select id="selectUserByTelephone" parameterType="java.lang.String" resultType="com.ambow.pojo.User">
+         select * from user where telephone=#{telephone}
+    </select>
+
+
+
+</mapper>

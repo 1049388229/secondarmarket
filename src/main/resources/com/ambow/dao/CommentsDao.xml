@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ambow.dao.CommentsDao" >
+    <resultMap id="commentsResultMap" type="com.ambow.pojo.Comments" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_id" property="user_id" jdbcType="VARCHAR" />
+        <result column="pid" property="pid" jdbcType="INTEGER" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="create_at" property="create_at" jdbcType="VARCHAR" />
+        <association property="user" javaType="com.ambow.pojo.User">
+            <id column="user_id" property="user_id" jdbcType="VARCHAR" />
+            <result column="username" property="username" jdbcType="VARCHAR" />
+            <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+            <result column="password" property="password" jdbcType="VARCHAR" />
+            <result column="email" property="email" jdbcType="VARCHAR" />
+            <result column="QQ" property="qq" jdbcType="VARCHAR" />
+            <result column="createdate" property="createdate" jdbcType="VARCHAR" />
+            <result column="state" property="state" jdbcType="INTEGER" />
+            <result column="conditions" property="conditions" jdbcType="VARCHAR" />
+        </association>
+
+
+    </resultMap>
+
+    <select id="getProductComments"  parameterType="java.lang.Integer" resultMap="commentsResultMap">
+       select u.*,c.* from comments c,user u where u.user_id=c.user_id and c.pid=#{pid} order by create_at desc
+    </select>
+    <insert id="addComments" parameterType="com.ambow.pojo.Comments">
+        insert  into comments(user_id,pid,content,create_at)values (#{user_id},#{pid},#{content},#{create_at})
+    </insert>
+
+
+
+
+</mapper>

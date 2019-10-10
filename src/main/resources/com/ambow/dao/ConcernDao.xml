@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ambow.dao.ConcernDao" >
+    <resultMap id="categoryResultMap" type="com.ambow.pojo.Concern" >
+        <id column="mid" property="mid" jdbcType="INTEGER" />
+        <result column="user_id" property="user_id" jdbcType="VARCHAR" />
+        <result column="pid" property="pid" jdbcType="INTEGER" />
+    </resultMap>
+
+    <insert id="addMyconert" >
+        insert into concern(user_id,pid) value (#{user_id},#{pid})
+    </insert>
+
+    <select id="MyConert"  resultType="com.ambow.pojo.Concern" >
+        select * from concern where user_id=#{user_id }and pid=#{pid}
+
+    </select>
+    <select id="getMyConcern"  resultType="com.ambow.pojo.Product" >
+
+ select * from products where id in(select  pid from concern where user_id=#{user_id})
+    </select>
+
+    <delete id="deleteMyConcern" parameterType="java.lang.Integer">
+        delete from concern where mid=#{mid}
+    </delete>
+
+
+
+
+</mapper>

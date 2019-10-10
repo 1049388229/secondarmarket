@@ -1,0 +1,1580 @@
+
+/* Normal desktop :1366px. */
+@media only screen and (min-width: 1170px) and (max-width: 1400px) {
+/* Sale Banner */
+.single-banner .banner-brief {
+  padding-top: 50px;
+}
+.single-banner.sale-banner-1 .banner-brief p {
+  display: none;
+}
+.single-banner.sale-banner-2 .banner-brief p:nth-child(2n+1) {
+  display: none;
+}
+/*--------------
+	Home 3
+------------------------------*/
+.home-banners .single-banner .banner-brief-1 {
+  left: 50px;
+  right: 50px;
+}
+.sin-product-3 .pro-action {
+  font-size: 30px;
+}
+.home-banners .single-banner .banner-brief-5 h1 {
+  font-size: 44px;
+  line-height: 44px;
+}
+.home-banners .single-banner .banner-brief-5 h3 {
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+.home-banners .single-banner .banner-brief-5 p {
+  font-size: 16px;
+  line-height: 16px;
+}
+.home-banners .single-banner .banner-brief-5 h2.price {
+  font-size: 50px;
+  line-height: 56px;
+  margin-bottom: 10px;
+}
+.home-banners .single-banner a.shop-now {
+  line-height: 40px;
+}
+.home-banners .single-banner .banner-brief-6 {
+  top: 48px;
+}
+.home-banners .single-banner .banner-brief-6 .banner-label {
+  margin-bottom: 10px;
+}
+.home-banners .single-banner .banner-brief-6 h1 {
+  font-size: 46px;
+  line-height: 46px;
+  margin-bottom: 10px;
+}
+.home-banners .single-banner .banner-brief-6 p {
+  margin-bottom: 15px;
+}
+.home-banners .single-banner .banner-brief-7 {
+  left: 55px;
+  right: 55px;
+  top: 30px;
+}
+.home-banners .single-banner .banner-brief-7 h2 {
+  font-size: 30px;
+  letter-spacing: 8px;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+.home-banners .single-banner .banner-brief-7 p {
+  display: none;
+}
+.home-banners .single-banner .banner-brief-7 .price h1 {
+  font-size: 120px;
+  line-height: 136px;
+}
+.home-banners .single-banner .banner-brief-8 {
+  left: 40px;
+  right: 40px;
+  top: 45px;
+}
+.home-banners .single-banner .banner-brief-8 h1 {
+  font-size: 44px;
+  line-height: 44px;
+  margin-bottom: 45px
+}
+.home-banners .single-banner .banner-brief-9 h1 {
+  font-size: 48px;
+}
+.subscribe-area.home-3 {
+  padding: 72px 0;
+}
+.subscribe-text {
+  margin-bottom: 20px;
+}
+.subscribe-text h2 {
+  font-size: 22px;
+  line-height: 24px;
+  margin-bottom: 0px;
+}
+#subscribe-form input[type="text"] {
+  width: 400px;
+}
+/*--------------
+	Contact
+------------------------------*/
+#contact-map {
+  height: 402px;
+}
+
+
+
+
+
+}
+/* Normal desktop :992px. */
+@media only screen and (min-width: 992px) and (max-width: 1169px) {
+/* Header Search */
+.header-search .search-form.active {
+  width: 660px;
+}
+/* Offer Area */
+.single-offer .offer-brief-2 {
+  top: 45px;
+}
+.single-offer .offer-brief-2 p {
+  display: none;
+}
+.single-offer .offer-brief-2 a {
+  margin-top: 30px;
+}
+.single-offer .offer-brief-4 p {
+  display: none;
+}
+/* Sale Banner */
+.single-banner .banner-brief {
+  padding-top: 30px;
+}
+.single-banner .banner-brief-1 h1 {
+  font-size: 66px;
+  line-height: 76px;
+}
+.single-banner.sale-banner-1 .banner-brief p {
+  display: none;
+}
+.single-banner .banner-brief-2 h1 {
+  font-size: 66px;
+  line-height: 54px;
+  margin-bottom: 15px;
+}
+.single-banner.sale-banner-2 .banner-brief p:nth-child(2n+1) {
+  display: none;
+}
+.single-banner .banner-brief a {
+  margin-top: 0;
+}
+/* Blog Slider */
+.blog-slider {
+  width: 75%;
+  margin: 0 auto;
+}
+.blog-item .blog-content {
+  margin-top: 25px;
+}
+/* Footer */
+.footer-social a {
+  margin-right: 30px;
+}
+.footer-widget-address p {
+  font-size: 13px;
+}
+/*--------------
+	Home 2
+------------------------------*/
+/* Offers Banner 2 */
+.offer-2-content .top-content {
+  margin-bottom: 40px;
+}
+.offer-2-content .top-content h1 {
+  line-height: 80px;
+  margin-bottom: 15px;
+  font-size: 66px;
+}
+/* Offers Area 2 */
+.single-offer-2.offer-1 .content p {
+  font-size: 14px;
+}
+.single-offer-2.offer-2 .content {
+  top: 60px;
+}
+.single-offer-2.offer-2 .content h1 {
+  font-size: 30px;
+}
+.single-offer-2 a .secondary {
+  width: 75%;
+}
+.single-offer-2.offer-3 .content h1 {
+  font-size: 36px;
+  line-height: 36px;
+}
+.single-offer-2.offer-3 .content .price {
+  margin-bottom: 25px;
+}
+.single-offer-2.offer-3 .content .price .new {
+  font-size: 24px;
+}
+.single-offer-2.offer-3 .content .price .old {
+  font-size: 16px;
+}
+/*--------------
+	Home 3
+------------------------------*/
+.home-banners .single-banner .banner-brief-1 {
+  left: 30px;
+  right: 30px;
+  top: 30px;
+}
+.home-banners .single-banner .banner-brief-1 h3 {
+  letter-spacing: 3px;
+  line-height: 24px;
+  font-size: 20px;
+}
+.home-banners .single-banner .banner-brief-1 h1 {
+  font-size: 40px;
+  line-height: 40px;
+  margin-bottom: 15px;
+}
+.home-banners .single-banner a.shop-now {
+  font-size: 16px;
+  line-height: 40px;
+  width: 170px;
+}
+.sin-product-3 .pro-action {
+  font-size: 24px;
+}
+.home-banners .single-banner .banner-brief-4 {
+  bottom: 40px;
+  left: 45px;
+}
+.home-banners .single-banner .banner-brief-4 h3 {
+  letter-spacing: 3px;
+  line-height: 24px;
+  font-size: 20px;
+}
+.home-banners .single-banner .banner-brief-4 h1 {
+  font-size: 40px;
+  line-height: 40px;
+  margin-bottom: 25px;
+}
+.home-banners .single-banner .banner-brief-5 {
+  left: 30px;
+  top: 20px;
+}
+.home-banners .single-banner .banner-brief-5 h1 {
+  font-size: 36px;
+  letter-spacing: 10px;
+  line-height: 30px;
+}
+.home-banners .single-banner .banner-brief-5 h3 {
+  font-size: 20px;
+  line-height: 30px;
+}
+.home-banners .single-banner .banner-brief-5 p {
+  font-size: 14px;
+}
+.home-banners .single-banner .banner-brief-5 h2.price {
+  font-size: 44px;
+  line-height: 44px;
+  margin-bottom: 0;
+}
+.banner-brief-5 .shop-now {
+  display: none!important;
+}
+.home-banners .single-banner .banner-brief-6 {
+  left: 38px;
+  top: 38px;
+}
+.home-banners .single-banner .banner-brief-6 .banner-label {
+  margin-bottom: 10px;
+}
+.home-banners .single-banner .banner-brief-6 h1 {
+  font-size: 44px;
+  line-height: 44px;
+}
+.home-banners .single-banner .banner-brief-6 p, .home-banners .single-banner .banner-brief-7 p {
+  display: none;
+}
+.home-banners .single-banner .banner-brief-7 {
+  left: 35px;
+  right: 35px;
+  top: 20px;
+}
+.home-banners .single-banner .banner-brief-7 h2 {
+  font-size: 20px;
+  letter-spacing: 8px;
+  line-height: 24px;
+}
+.home-banners .single-banner .banner-brief-7 h1 {
+  font-size: 50px;
+  line-height: 50px;
+  margin-bottom: 10px;
+}
+.home-banners .single-banner .banner-brief-7 .price {
+  margin-bottom: 40px;
+}
+.home-banners .single-banner .banner-brief-7 .price h3 {
+  font-size: 24px;
+  line-height: 24px;
+}
+.home-banners .single-banner .banner-brief-7 .price h1 {
+  font-size: 90px;
+  line-height: 100px;
+}
+.home-banners .single-banner .banner-brief-8 {
+  left: 30px;
+  right: 30px;
+  top: 30px;
+}
+.home-banners .single-banner .banner-brief-8 h3 {
+  font-size: 20px;
+  line-height: 24px;
+}
+.home-banners .single-banner .banner-brief-8 h1 {
+  font-size: 36px;
+  line-height: 36px;
+  margin-bottom: 25px;
+}
+.home-banners .banner-brief-1 a.shop-now, .home-banners .banner-brief-8 a.shop-now {
+  width: 130px;
+  line-height: 36px;
+  font-size: 14px;
+}
+/*--------------
+	Shop Page
+------------------------------*/
+.shop-page-banner h2 {
+  font-size: 44px;
+}
+.shop-page-banner h1 {
+  font-size: 80px;
+  line-height: 80px;
+  margin-bottom: 50px;
+}
+.shop-page-slider .sin-slide .slide-content a {
+  margin-top: 60px;
+}
+.pro-hover-action {
+  margin-top: 94px;
+}
+.shop-two-column .pro-hover-action {
+  margin-top: 150px;
+}
+.shop-three-column .pro-hover-action {
+  margin-top: 70px;
+}
+/*--------------
+	Product Details
+------------------------------*/
+.pro-color-size .pro-color ul li, .pro-color-size .pro-size ul li {
+  margin-bottom: 10px;
+}
+.pro-info-quantity {
+  margin-right: 15px;
+}
+.pro-info-quantity h3 {
+  margin-right: 10px;
+}
+.pro-info-quantity-cart .pro-info-addcart {
+  width: 190px;
+}
+.pro-image-tab {
+  padding: 0;
+}
+.pro-info-actions-2 .pro-info-addcart {
+  margin-right: 25px;
+}
+.pro-info-actions-2 button {
+  padding-right: 25px !important;
+}
+/*--------------
+	Cart, Checkout, Order
+------------------------------*/
+.cart-page-title h1 {
+  font-size: 22px;
+}
+.cart-page-title a .check-box {
+  margin-top: 5px;
+}
+/*--------------
+	Blog
+------------------------------*/
+.sin-blog .blog-details .title {
+  font-size: 30px;
+}
+/*--------------
+	Contact
+------------------------------*/
+#contact-map {
+  height: 426px;
+}
+
+
+
+
+
+}
+/* Tablet desktop :768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+.header-search .search-form.active {
+  width: 460px;
+}
+/* revSlider Arrow */
+.tp-leftarrow.home1 {
+  left: 40px!important;
+}
+.tp-rightarrow.home1 {
+  right: 40px!important;
+}
+/* Two Column Promo */
+.two-column-promo-container {
+  margin-top: -50px;
+}
+.two-column-promo .sin-promo .links {
+  bottom: 20px;
+  left: 26px;
+}
+/* Pro Tab List */
+.pro-tab-list li a {
+  font-size: 24px;
+}
+/* Offers Area */
+.single-offer .offer-brief-1 h1 {
+  font-size: 26px;
+  line-height: 26px;
+  margin-bottom: 5px;
+}
+.single-offer .offer-brief-2 {
+  bottom: auto;
+  top: 35px;
+}
+.single-offer .offer-brief-2 h1 {
+  font-size: 50px;
+  line-height: 50px;
+  margin-bottom: 12px;
+}
+.single-offer .offer-brief-2 p {
+  display: none;
+}
+.single-offer .offer-brief-2 a {
+  margin-top: 15px;
+}
+.single-offer .offer-brief-3 h2, .single-offer .offer-brief-3 h3 {
+  font-size: 16px;
+  line-height: 28px;
+}
+.single-offer .offer-brief-3 h1 {
+  font-size: 30px;
+  line-height: 30px;
+}
+.single-offer .offer-brief-3 a {
+  margin-top: 14px;
+}
+.single-offer .offer-brief-4 {
+  left: 25px;
+  right: 25px;
+}
+.single-offer .offer-brief-4 .offer-label {
+  margin-bottom: 10px;
+}
+.single-offer .offer-brief-4 h1 {
+  font-size: 28px;
+  line-height: 30px;
+  margin-bottom: 0;
+}
+.single-offer .offer-brief-4 p {
+  display: none;
+}
+.single-offer .offer-brief-4 a {
+  margin-top: 14px;
+}
+/* Sale Banner */
+.single-banner.sale-banner-1 .banner-brief p:nth-child(2n),
+.single-banner.sale-banner-2 .banner-brief p:nth-child(2n) {
+  display: none;
+}
+/* Brand Area */
+.brand-slider {
+  padding: 0 60px;
+}
+/* Footer */
+.footer-top {
+  padding: 34px 0;
+}
+.footer-widget {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+.footer-widget:nth-child(2n+1) {
+  clear: both;
+}
+/*--------------
+	Home 2
+------------------------------*/
+/* revSlider Arrow */
+.tp-leftarrow.home2 {
+  left: 50px!important;
+}
+.tp-rightarrow.home2 {
+  right: 50px!important;
+}
+/* Promo Product */
+.promo-pro-text .wrap h2 {
+  margin-bottom: 30px;
+}
+/* Offers Banner 2 */
+.offer-2-content .top-content {
+  margin-bottom: 40px;
+}
+.offer-2-content .top-content h1 {
+  line-height: 90px;
+  margin-bottom: 20px;
+}
+.offer-2-content .bottom-content h1.price {
+  font-size: 46px;
+  line-height: 54px;
+  margin-bottom: 20px;
+}
+.single-offer-2 {
+  margin-top: 30px;
+}
+/*--------------
+	Home 3
+------------------------------*/
+/* revSlider Arrow */
+.tp-leftarrow.home3 {
+  left: 50px!important;
+}
+.tp-rightarrow.home3 {
+  right: 50px!important;
+}
+.home-banners .single-banner .banner-brief-1 {
+  left: 70px;
+  right: 70px;
+}
+.home-banners .single-banner .banner-brief-5 h1 {
+  font-size: 46px;
+  line-height: 46px;
+}
+.home-banners .single-banner .banner-brief-5 h3 {
+  font-size: 22px;
+  line-height: 28px;
+  margin-bottom: 10px;
+}
+.home-banners .single-banner .banner-brief-5 h2.price {
+  font-size: 56px;
+  line-height: 56px;
+  margin-bottom: 20px;
+}
+.home-banners .single-banner .banner-brief-6 p {
+  display: none;
+}
+.home-banners .single-banner .banner-brief-7 {
+  left: 60px;
+  right: 60px;
+  top: 50px;
+}
+.home-banners .single-banner .banner-brief-7 h2 {
+  font-size: 30px;
+  letter-spacing: 10px;
+  line-height: 30px;
+}
+.home-banners .single-banner .banner-brief-7 h1 {
+  font-size: 66px;
+  line-height: 66px;
+  margin-bottom: 10px;
+}
+.home-banners .single-banner .banner-brief-7 p {
+  margin-bottom: 10px;
+}
+.home-banners .single-banner .banner-brief-7 .price h3 {
+  font-size: 30px;
+  line-height: 30px;
+}
+.home-banners .single-banner .banner-brief-7 .price h1 {
+  font-size: 130px;
+  line-height: 130px;
+}
+.home-banners .single-banner .banner-brief-7 .price {
+  margin-bottom: 30px;
+}
+.home-banners .single-banner .banner-brief-8 h1 {
+  font-size: 46px;
+  line-height: 46px;
+  margin-bottom: 44px;
+}
+/*--------------
+	Shop Page
+------------------------------*/
+.shop-page-banner h2 {
+  font-size: 40px;
+}
+.shop-page-banner h1 {
+  font-size: 70px;
+  line-height: 70px;
+  margin-bottom: 40px;
+}
+.shop-page-banner a {
+  font-size: 16px;
+  line-height: 40px;
+  padding: 0 15px;
+  width: auto;
+}
+.shop-page-slider .sin-slide .slide-content a {
+  margin-top: 80px;
+}
+.shop-sidebar {
+  margin-bottom: 72px;
+}
+.shop-page-right .shop-sidebar {
+  margin-bottom: 0;
+  margin-top: 72px;
+}
+.shop-two-column .pro-hover-action {
+  margin-top: 100px;
+}
+.shop-four-column .pro-hover-action {
+  margin-top: 130px;
+}
+/*--------------
+	Product Details
+------------------------------*/
+.product-info {
+  border-right: 0 solid #ebebeb;
+}
+.product-image-2 {
+  margin-bottom: 30px;
+}
+.product-info-2, .pro-info-actions-2 {
+  margin-left: 0;
+}
+/*--------------
+	Cart, Checkout, Order
+------------------------------*/
+.table-responsive {
+  border: 1px solid #ddd;
+}
+.shipping-cost, .coupon-discount {
+  margin-bottom: 50px;
+}
+.checkout-form .in {
+  margin-bottom: 40px;
+}
+.order-details .table-responsive {
+  border: medium none;
+}
+.order-information .single h4 {
+  font-size: 14px;
+}
+.order-details-complete {
+  margin-bottom: 63px;
+  padding: 0;
+}
+.coustomer-details, .billing-address {
+  padding-left: 0;
+}
+/*--------------
+	Blog
+------------------------------*/
+.sin-blog .blog-details .title {
+  font-size: 26px;
+  line-height: 30px;
+}
+.sin-blog-post .blog-details .title {
+  font-size: 44px;
+  line-height: 50px;
+}
+.prev-next-post .prev-post a, .prev-next-post .next-post a {
+  font-size: 13px;
+}
+/*--------------
+	Contact
+------------------------------*/
+.contact-form {
+  margin-bottom: 72px;
+}
+
+
+}
+/* Large Mobile :480px. */
+@media only screen and (max-width: 767px) {
+.container{
+  width: 450px;
+}
+/* Header Search */
+.header-search .search-form.active {
+  width: 300px;
+}
+/* revSlider Arrow */
+.tp-leftarrow.home1, .tp-rightarrow.home1 {
+  display: none !important;
+}
+/* Two Column Promo */
+.two-column-promo-container {
+  margin-top: -33px;
+}
+.two-column-promo .sin-promo .promo-title {
+  top: 35px;
+}
+.two-column-promo .sin-promo .promo-title h1 {
+  font-size: 18px;
+  line-height: 22px;
+}
+.two-column-promo .sin-promo .links {
+  display: none;
+}
+/* Pro Tab List */
+.pro-tab-list {
+  display: block;
+  text-align: left;
+}
+.pro-tab-list li {
+  clear: both;
+  display: block;
+  float: left;
+  padding: 0 35px 0 0 !important;
+  margin-bottom: 10px;
+}
+.pro-tab-list li:last-child {
+  margin-bottom: 0;
+}
+.pro-tab-list li:last-child::before {
+  display: block;
+}
+.pro-tab-list li a {
+  font-size: 24px;
+}
+.pro-hover-action {
+  margin-top: 154px;
+}
+.more-product {
+  margin-bottom: 50px;
+}
+.tab-product .slick-prev-two.slick-arrow, .tab-product .slick-next-two.slick-arrow {
+  top: 120px;
+}
+.tab-product-2 .slick-arrow{
+	top: 20px;
+}
+/* Offers Area */
+.single-offer {
+  margin-bottom: 30px;
+}
+.single-offer .offer-image img {
+  width: 100%;
+}
+.single-offer .offer-brief-3 {
+  bottom: 25px;
+}
+.single-offer .offer-brief-3 h2, .single-offer .offer-brief-3 h3 {
+  font-size: 14px;
+  line-height: 24px;
+}
+.single-offer .offer-brief-3 h1 {
+  font-size: 28px;
+  line-height: 28px;
+}
+.single-offer .offer-brief-3 a {
+  margin-top: 15px;
+}
+/* Sale Banner */
+.single-banner .banner-brief p {
+  display: none;
+}
+.single-banner .banner-brief-1 .banner-label {
+  margin-bottom: 10px;
+}
+.single-banner .banner-brief-1 h1 {
+  font-size: 66px;
+  line-height: 66px;
+  margin-bottom: 0;
+}
+/* Promo */
+.promo-slick-prev.slick-arrow {
+  left: 14px;
+}
+.promo-slick-next.slick-arrow {
+  right: 14px;
+}
+.promo-products .slick-arrow {
+  top: -410px;
+}
+/* Blog */
+.blog-item .blog-image {
+  margin-bottom: 30px;
+}
+.blog-area .slick-arrow {
+  top: -30px;
+}
+.blog-area .pro-slick-next.slick-arrow {
+  right: 25px;
+}
+.blog-area .pro-slick-prev.slick-arrow {
+  left: 25px;
+}
+/* Subscribe */
+.subscribe-area {
+  padding: 180px 0;
+}
+.subscribe-container {
+  width: 100%;
+}
+.subscribe-text {
+  margin-bottom: 30px;
+}
+.subscribe-text h2 {
+  font-size: 20px;
+}
+#subscribe-form input[type="text"] {
+  width: 300px;
+}
+/* Brand */
+.brand-area .section-title-2 {
+  margin-bottom: 30px;
+}
+.brand-slider {
+  padding: 0 45px;
+}
+.brand-slider .slick-prev {
+  left: 0;
+}
+.brand-slider .slick-next {
+  right: 0;
+}
+/* Footer */
+.footer-widget:first-child {
+  margin-bottom: 50px;
+  width: 100%;
+}
+.footer-widget {
+  width: 50%;
+  float: left;
+}
+.footer-widget:last-child {
+  display: none;
+}
+.footer-bottom .copyright {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.footer-bottom .payment {
+  text-align: center;
+}
+/*--------------
+	Home 2
+------------------------------*/
+/* revSlider Arrow */
+.tp-leftarrow.home2, .tp-rightarrow.home2 {
+  display: none !important;
+}
+/* Promo Product */
+.promo-pro-slider {
+  margin-left: 0;
+  padding: 0 15px;
+}
+/* Offers Banner 2 */
+.offer-2-content {
+  padding-right: 15px;
+}
+.offer-2-content .top-content {
+  margin-bottom: 30px;
+}
+.offer-2-content .top-content h3 {
+  font-size: 14px;
+}
+.offer-2-content .top-content h1 {
+  font-size: 42px;
+  line-height: 54px;
+  margin-bottom: 10px;
+}
+.offer-2-content .bottom-content h1.price {
+  font-size: 32px;
+  line-height: 34px;
+  margin-bottom: 15px;
+}
+/* Offers Area 2 */
+.single-offer-2 {
+  margin-bottom: 30px;
+}
+.single-offer-2 a .secondary {
+  width: 300px;
+}
+.single-offer-2.offer-3 .content h1 {
+  font-size: 36px;
+  line-height: 36px;
+  margin-bottom: 10px;
+}
+.single-offer-2.offer-3 .content .price {
+  margin-bottom: 15px;
+}
+.single-offer-2.offer-3 {
+  margin-bottom: 0;
+}
+/*--------------
+	Home 3
+------------------------------*/
+/* revSlider Arrow */
+.tp-leftarrow.home3, .tp-rightarrow.home3 {
+  display: none !important;
+}
+.home-banners .single-banner .banner-brief-4 {
+  bottom: 40px;
+  left: 45px;
+}
+.home-banners .single-banner .banner-brief-4 h3 {
+  font-size: 20px;
+  letter-spacing: 3px;
+}
+.home-banners .single-banner .banner-brief-4 h1 {
+  font-size: 40px;
+  line-height: 40px;
+  margin-bottom: 25px;
+}
+.home-banners .single-banner .banner-brief-4 a {
+  font-size: 16px;
+  line-height: 36px;
+  padding: 0 15px;
+  width: auto;
+}
+.home-banners .single-banner .banner-brief-6 {
+  left: 38px;
+  top: 38px;
+}
+.home-banners .single-banner .banner-brief-6 .banner-label {
+  margin-bottom: 10px;
+}
+.home-banners .single-banner .banner-brief-6 h1 {
+  font-size: 40px;
+  line-height: 40px;
+}
+.home-banners .single-banner .banner-brief-6 p {
+  display: none;
+}
+.home-banners .banner-brief-6 a.shop-now {
+  width: auto;
+  line-height: 36px;
+  padding: 0 15px;
+  font-size: 16px;
+}
+/*--------------
+	Shop Page
+------------------------------*/
+.shop-page-banner h2 {
+  font-size: 34px;
+}
+.shop-page-banner h1 {
+  font-size: 50px;
+  line-height: 50px;
+  margin-bottom: 30px;
+}
+.shop-page-banner a {
+  font-size: 14px;
+  line-height: 36px;
+  padding: 0 15px;
+  width: auto;
+}
+.shop-sidebar {
+  margin-bottom: 72px;
+}
+.shop-page-right .shop-sidebar {
+  margin-bottom: 0;
+  margin-top: 72px;
+}
+.list-pro-image {
+  margin-bottom: 30px;
+}
+.list-pro-image a {
+  display: block;
+  float: left;
+}
+.shop-page-slider .sin-slide .slide-content {
+  left: 30px;
+  top: 30px;
+}
+.shop-page-slider .sin-slide .slide-content h3 {
+  font-size: 14px;
+}
+.shop-page-slider .sin-slide .slide-content h1 {
+  font-size: 36px;
+  line-height: 36px;
+}
+.shop-page-slider .sin-slide .slide-content a {
+  margin-top: 30px;
+}
+.shop-page-slider .slick-dots {
+  bottom: 20px;
+  right: 20px;
+}
+.page-banner {
+  padding: 100px 0;
+}
+.page-banner h1 {
+  font-size: 40px;
+}
+.shop-two-column .pro-hover-action {
+  margin-top: 130px;
+}
+.shop-three-column .pro-hover-action {
+  margin-top: 120px;
+}
+/*--------------
+	Product Details
+------------------------------*/
+.product-info {
+  border-right: 0 solid #ebebeb;
+}
+.pro-info-tab-list li {
+  margin-right: 40px;
+}
+.pro-color-size .pro-color, .pro-color-size .pro-size {
+  width: 100%;
+}
+.pro-color-size .pro-color ul li, .pro-color-size .pro-size ul li {
+  margin-right: 20px;
+}
+.pro-image-tab {
+  padding: 0;
+}
+.product-image-2 {
+  margin-bottom: 30px;
+}
+.product-info-2, .pro-info-actions-2 {
+  margin-left: 0;
+}
+.pro-info-actions-2 {
+  margin-left: 0;
+  padding-left: 45px;
+}
+.pro-info-ratting-2, .pro-info-quantity-2 {
+  float: left;
+}
+.pro-info-actions-2 button {
+  float: left;
+  margin-bottom: 15px;
+}
+.pro-info-actions-2 button:last-child {
+  margin-bottom: 0;
+}
+.pro-info-tab-container-2 {
+  padding: 45px 45px 75px;
+}
+.pro-info-tab-list li {
+  margin-right: 30px;
+}
+/*--------------
+	Cart, Checkout, Order
+------------------------------*/
+.cart-page-tablist ul {
+  display: inline-block;
+}
+.cart-page-tablist ul::before {
+  display: none;
+}
+.cart-page-tablist ul li {
+  float: none;
+  margin-right: 0;
+  margin-bottom: 15px;
+}
+.cart-page-tablist ul li:last-child {
+  margin-bottom: 0;
+}
+.shipping-cost, .coupon-discount {
+  margin-bottom: 50px;
+}
+.order-details .table-responsive {
+  border: medium none;
+}
+.order-pro-table tbody tr td:first-child {
+  min-width: 200px;
+}
+.order-pro-table tbody tr td:last-child {
+  min-width: 120px;
+}
+.cart-page-title h1 {
+  font-size: 24px;
+}
+.single-payment.other .wrapper {
+  width: 100%;
+}
+.single-payment.other .wrapper a {
+  margin-right: 6px;
+}
+.single-payment.other > a {
+  margin-left: 0;
+  margin-top: 10px;
+}
+.order-complete-mgs p {
+  font-size: 12px;
+}
+.order-information .single {
+  width: 50%;
+}
+.order-information .single:nth-child(1), .order-information .single:nth-child(2) {
+  border-bottom: 1px solid #e1e1e1;
+}
+.order-information .single h4 {
+  font-size: 14px;
+}
+.order-details-complete .order-pro-table {
+  margin-bottom: 20px;
+}
+.coustomer-details, .billing-address {
+  padding-left: 0;
+}
+.coustomer-details .order-com-title h1, .billing-address .order-com-title h1 {
+  font-size: 20px;
+}
+.coustomer-details .content ul li span {
+  width: 100px;
+}
+/*--------------
+	Blog
+------------------------------*/
+.sin-blog .blog-details .blog-cat {
+  font-size: 14px;
+  height: 23px;
+  line-height: 20px;
+}
+.sin-blog .blog-details .top-meta {
+  line-height: 23px;
+}
+.sin-blog .blog-details .title {
+  font-size: 18px;
+  line-height: 24px;
+}
+.sin-blog .blog-details .blog-meta {
+  font-size: 16px;
+}
+.sin-blog-post .blog-details .title {
+  font-size: 36px;
+  line-height: 44px;
+}
+.prev-next-post .prev-post, .prev-next-post .next-post {
+  width: 50%;
+}
+.prev-next-post .prev-post a, .prev-next-post .next-post a {
+  font-size: 14px;
+}
+.child-comments-container {
+  margin-left: 50px;
+}
+/*--------------
+	Contact
+------------------------------*/
+.contact-form {
+  margin-bottom: 72px;
+}
+/*--------------
+	Space fix
+------------------------------*/
+.two-column-promo, .tab-product, .offers-area, .sale-banner, .blog-area, .offers-banner-2, .offers-area-2 {
+  margin-bottom: 72px;
+}
+.top-product {
+  margin-bottom: 0;
+}
+.brand-area {
+  padding: 72px 0;
+}
+.offers-area .offers-right {
+  margin-bottom: 0;
+}
+.promo-products {
+  margin: 72px 0;
+}
+
+
+
+
+
+
+
+}
+
+/* small mobile :320px. */
+@media only screen and (max-width: 479px) {
+.container{
+  width: 300px;
+}
+/* Header Top */
+.header-login-reg li a, .language-currency > li > a {
+  font-size: 10px;
+}
+/* Header Bottom */
+.logo, .search-cart {
+  width: 50%;
+}
+.header-search {
+  display: none;
+}
+/* Two Column Promo */
+.two-column-promo-container {
+  margin-top: 0;
+}
+.two-column-promo .sin-promo {
+  width: 100%;
+}
+/* Product */
+.tab-pro-slider {
+  margin: 0 -10px;
+}
+.tab-pro-slider .slick-list {
+  padding: 30px 10px;
+}
+.tab-pro-slider .slick-list {
+  padding: 70px 10px;
+}
+.slick-prev-two.slick-arrow, .slick-next-two.slick-arrow {
+  top: 120px;
+}
+.pro-hover-action {
+  margin-top: 94px;
+}
+.slick-arrow {
+  top: 120px;
+}
+.pro-slick-next.slick-arrow {
+  right: 25px;
+}
+.pro-slick-prev.slick-arrow {
+  left: 25px;
+}
+/* Offers Area */
+.single-offer .offer-brief-2 p, .single-offer .offer-brief-4 p {
+  display: none;
+}
+.single-offer .offer-brief-2 a {
+  margin-top: 40px;
+}
+.single-offer.offer-3 {
+  display: none;
+}
+.single-offer .offer-brief-4 h1 {
+  line-height: 30px;
+  font-size: 28px;
+}
+/* Sale Banner */
+.single-banner .banner-brief {
+  padding-top: 15px;
+}
+.single-banner .banner-brief-1 .banner-label {
+  margin-bottom: 5px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  line-height: 18px;
+}
+.single-banner .banner-brief-1 h2 {
+  font-size: 22px;
+}
+.single-banner .banner-brief-1 h1 {
+  font-size: 40px;
+  line-height: 44px;
+  margin-bottom: 0;
+}
+.single-banner .banner-brief a {
+  line-height: 24px;
+  margin-top: 5px;
+  font-size: 12px;
+}
+.single-banner .banner-brief-2 h1 {
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+/* Subscribe */
+#subscribe-form input[type="text"] {
+  margin-bottom: 10px;
+  width: 100%;
+}
+#subscribe-form input[type="submit"] {
+  width: 100%;
+}
+/* Footer */
+.footer-widget {
+  float: left;
+  margin-bottom: 50px;
+  width: 100%;
+}
+.footer-widget:last-child {
+  display: block;
+  margin: 0;
+}
+#scrollUp {
+  bottom: 15px;
+  font-size: 22px;
+  right: 15px;
+}
+/*--------------
+	Home 2
+------------------------------*/
+.single-offer-2.offer-3 {
+  display: none;
+}
+/*--------------
+	Home 3
+------------------------------*/
+.sin-product-3 .pro-action {
+  font-size: 30px;
+}
+.home-banners .single-banner .banner-brief-1 {
+  left: 40px;
+  right: 40px;
+  top: 40px;
+}
+.home-banners .single-banner .banner-brief-1 h3 {
+  font-size: 20px;
+  line-height: 24px;
+}
+.home-banners .single-banner .banner-brief-1 h1 {
+  font-size: 44px;
+  line-height: 44px;
+  margin-bottom: 25px;
+}
+.home-banners .single-banner a.shop-now {
+  font-size: 14px;
+  line-height: 36px;
+  padding: 0 15px;
+  width: auto;
+}
+.home-banners .single-banner .banner-brief-4 {
+  bottom: 30px;
+  left: 35px;
+}
+.home-banners .single-banner .banner-brief-4 h3 {
+  display: none;
+}
+.home-banners .single-banner .banner-brief-4 h1 {
+  font-size: 30px;
+  line-height: 30px;
+  margin-bottom: 15px;
+}
+.home-banners .single-banner .banner-brief-6 {
+  left: 25px;
+  top: 25px;
+}
+.home-banners .single-banner .banner-brief-6 .banner-label {
+  margin-bottom: 5px;
+  font-size: 14px;
+}.home-banners .single-banner .banner-brief-6 h1 {
+  font-size: 26px;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+.home-banners .single-banner .banner-brief-7 {
+  left: 55px;
+  right: 55px;
+  top: 30px;
+}
+.home-banners .single-banner .banner-brief-7 h2 {
+  font-size: 24px;
+  letter-spacing: 7px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+.home-banners .single-banner .banner-brief-7 h1 {
+  font-size: 60px;
+  line-height: 60px;
+}
+.home-banners .single-banner .banner-brief-7 p {
+  display: none;
+}
+.home-banners .single-banner .banner-brief-7 .price h3 {
+  font-size: 24px;
+  line-height: 24px;
+}
+.home-banners .single-banner .banner-brief-7 .price h1 {
+  font-size: 100px;
+  line-height: 100px;
+}
+.home-banners .single-banner .banner-brief-8 {
+  left: 30px;
+  right: 30px;
+  top: 35px;
+}
+.home-banners .single-banner .banner-brief-8 h1 {
+  font-size: 40px;
+  line-height: 40px;
+  margin-bottom: 40px;
+}
+.home-banners .single-banner .banner-brief-9 h1 {
+  font-size: 40px;
+}
+/*--------------
+	Shop Page
+------------------------------*/
+.shop-page-banner h2 {
+  font-size: 24px;
+}
+.shop-page-banner h1 {
+  font-size: 34px;
+  line-height: 44px;
+  margin-bottom: 20px;
+}
+.shop-page-banner a {
+  font-size: 12px;
+  line-height: 30px;
+}
+.shop-top-toolbar p {
+  display: none;
+}
+.shop-page-slider {
+  display: none;
+}
+.page-banner {
+  padding: 60px 0;
+}
+.page-banner h1 {
+  font-size: 24px;
+}
+.shop-two-column .pro-hover-action {
+  margin-top: 80px;
+}
+.shop-three-column .pro-hover-action {
+  margin-top: 60px;
+}
+/*--------------
+	Product Details
+------------------------------*/
+.product-info .pro-title-rating h2, .pro-info-title-2 h2 {
+  font-size: 20px;
+}
+.pro-info-ratting {
+  margin-top: 10px;
+  float: left;
+  width: 100%;
+}
+.pro-info-tab-list li {
+  margin-right: 0;
+  width: 100%;
+}
+.pro-info-tab-list li a {
+  border: 0 none;
+  float: left;
+}
+.pro-color-size .pro-color ul li, .pro-color-size .pro-size ul li {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.product-info .pro-info-price .new, .pro-info-price-2 .new {
+  font-size: 20px;
+  margin-right: 15px;
+}
+.product-info .pro-info-price .old, .pro-info-price-2 .old {
+  font-size: 14px;
+  margin-top: 10px;
+}
+.pro-info-price-2 .old {
+  margin-top: 0;
+}
+.sin-pro-review .rev-image {
+  float: none;
+  margin-right: 0;
+  margin-bottom: 20px;
+}
+.sin-pro-review .pro-rev-ratting {
+  float: none;
+}
+.pro-rev-form .moon-form .input-box-2 {
+  width: 100%;
+}
+.pro-info-cat-2 p {
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+.pro-info-quantity-2 .cart-plus-minus-box {
+  width: 65px;
+}
+.pro-info-actions-2 button {
+  margin-right: 0 !important;
+  padding-right: 20px !important;
+}
+/*--------------
+	Cart, Checkout, Order
+------------------------------*/
+.cart-page-container {
+  padding: 56px 30px;
+}
+.cart-page-title h1 {
+  font-size: 20px;
+}
+.payment-details .title {
+  font-size: 16px;
+}
+.payment-details .payment-wrapper p, .payment-details .payment-wrapper span {
+  font-size: 12px!important;
+}
+.payment-details .procced-checkout .checkout-btn {
+  font-size: 12px;
+  padding: 0 13px;
+}
+.cart-page-title h1 {
+  font-size: 14px;
+}
+.payment-methods .single-payment .select-btn {
+  font-size: 12px;
+}
+.payment-methods .single-payment .select-btn .check-box {
+  margin-right: 10px;
+}
+.single-payment.other .wrapper a {
+  margin: 3px;
+}
+.order-details .place-order .place-order-btn {
+  width: 100%;
+}
+.order-information .single {
+  width: 100%;
+}
+.order-complete-mgs p {
+  font-size: 9px;
+}
+.order-information .single:nth-child(3) {
+  border-bottom: 1px solid #e1e1e1;
+}
+.coustomer-details .order-com-title h1, .billing-address .order-com-title h1 {
+  font-size: 16px;
+}
+.coustomer-details .content ul li {
+  font-size: 10px;
+}
+.coustomer-details .content ul li span {
+  width: 70px;
+}
+/*--------------
+	Blog
+------------------------------*/
+.sin-blog .blog-details .top-meta {
+  float: left;
+  margin-top: 10px;
+}
+.sin-blog .blog-details .title {
+  font-size: 16px;
+  line-height: 22px;
+}
+.sin-blog .blog-details .blog-meta {
+  font-size: 16px;
+}
+.sin-blog-post .blog-details .title {
+  font-size: 24px;
+  line-height: 30px;
+}
+.sin-blog-post .blog-details .blog-meta {
+  font-size: 14px;
+}
+.post-tag-share .post-share {
+  float: left;
+  margin-top: 10px;
+}
+.prev-next-post .prev-post a, .prev-next-post .next-post a {
+  font-size: 10px;
+}
+.sin-comment .image {
+  margin-right: 0;
+  float: none;
+  margin-bottom: 20px;
+}
+.child-comments-container {
+  margin-left: 0;
+}
+.blog-comments h2 {
+  font-size: 20px;
+}
+.comment-form .input-box {
+  width: 100% !important;
+}
+
+.error-404 h2 {
+  font-size: 20px;
+}
+
+
+
+}
