@@ -29,6 +29,10 @@
         insert  into comments(user_id,pid,content,create_at)values (#{user_id},#{pid},#{content},#{create_at})
     </insert>
 
+    <delete id="deleteComments" parameterType="java.lang.Integer">
+        DELETE  FROM comments WHERE id=#{id}
+    </delete>
+
 
 
 

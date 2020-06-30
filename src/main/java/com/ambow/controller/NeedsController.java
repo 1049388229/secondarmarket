@@ -7,6 +7,7 @@ import com.ambow.service.NeedsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -18,7 +19,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/needs")
@@ -76,14 +79,16 @@ public class NeedsController {
 
 
     @RequestMapping("getNeedProduct")
-    public ModelAndView getNeedProduct(){
+    public ModelAndView getNeedProduct(HttpServletRequest request){
         ModelAndView mv=new ModelAndView();
+        User user= (User) request.getSession().getAttribute("userLogin");
         List<Needs> listNeeds=needsService.getNeedProduct();
         for (Needs ne :
                 listNeeds) {
             System.out.println(ne.getUser());
         }
         mv.addObject("listNeeds",listNeeds);
+        mv.addObject("userNeeds",user);
         mv.setViewName("needProduct");
         return mv;
     }
@@ -109,6 +114,27 @@ public class NeedsController {
 
         return "redirect:/needs/getAllNeeds.do";
 
+    }
+
+    @RequestMapping("/deleteNeeds.do")
+    @ResponseBody
+    public Map<String,String> deleteNeeds(@RequestParam(name = "nid")int nid){
+        String flag = "0";
+        String msg = "0";
+        try{
+            needsService.deleteNeeds(nid);
+            flag="1";
+            msg="删除成功";
+        }catch (Exception e){
+            flag="2";
+            msg="删除失败";
+        }
+
+
+        Map<String, String> map =new HashMap<>();
+        map.put("flag", flag);
+        map.put("msg", msg);
+        return map;
     }
 
 

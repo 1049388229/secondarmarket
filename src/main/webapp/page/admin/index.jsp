@@ -29,7 +29,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/admin/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
-    <title>H-ui.admin v3.1</title>
+    <title>纬度校园二手交易平台后台管理系统</title>
     <meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
     <meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
@@ -43,16 +43,16 @@
             </nav>
             <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
                 <ul class="cl">
-                    <li>超级管理员</li>
+                    <li>${sessionScope.adminLogin.role}</li>
                     <li class="dropDown dropDown_hover">
-                        <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
+                        <a href="#" class="dropDown_A">${sessionScope.adminLogin.username}<i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
+
                             <li><a href="#">切换账户</a></li>
-                            <li><a href="#">退出</a></li>
+                            <li><a href="${pageContext.request.contextPath}/admin/loginOut.do" target="_parent">退出</a></li>
                         </ul>
                     </li>
-                    <li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
+
                     <li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
                             <li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
@@ -74,7 +74,7 @@
             <dt><i class="Hui-iconfont">&#xe616;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="${pageContext.request.contextPath}/user/getAllUser.do" data-title="用户管理" href="javascript:void(0)">用户管理</a></li>
+                    <li><a data-href="${pageContext.request.contextPath}/user/getAllUser.do?page=1&size=10" data-title="用户管理" href="javascript:void(0)">用户管理</a></li>
                 </ul>
             </dd>
         </dl>
@@ -90,7 +90,7 @@
             <dt><i class="Hui-iconfont">&#xe620;</i> 商品分类管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="${pageContext.request.contextPath}/category/getAdminCatelogy.do" data-title="品牌管理" href="javascript:void(0)">分类管理</a></li>
+                    <li><a data-href="${pageContext.request.contextPath}/category/getAdminCatelogy.do?page=1&size=10" data-title="品牌管理" href="javascript:void(0)">分类管理</a></li>
                 </ul>
             </dd>
         </dl>
@@ -98,8 +98,7 @@
             <dt><i class="Hui-iconfont">&#xe622;</i> 订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="http://h-ui.duoshuo.com/admin/" data-title="评论列表" href="javascript:;">订单管理</a></li>
-                    <li><a data-href="feedback-list.html" data-title="意见反馈" href="javascript:void(0)">意见反馈</a></li>
+                    <li><a data-href="${pageContext.request.contextPath}/order/getAllOrder.do" data-title="订单管理" href="javascript:;">订单管理</a></li>
                 </ul>
             </dd>
         </dl>
@@ -107,8 +106,8 @@
             <dt><i class="Hui-iconfont">&#xe62d;</i> 系统设置<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="admin-role.html" data-title="个人信息" href="javascript:void(0)">个人信息</a></li>
-                    <li><a data-href="admin-permission.html" data-title="修改密码" href="javascript:void(0)">修改密码</a></li>
+                    <li><a data-href="${pageContext.request.contextPath}/admin/adminInformation.do" data-title="个人信息" href="javascript:void(0)">个人信息</a></li>
+                    <li><a data-href="${pageContext.request.contextPath}/admin/adminUpdayejsp.do" data-title="修改密码" href="javascript:void(0)">修改密码</a></li>
                 </ul>
             </dd>
         </dl>

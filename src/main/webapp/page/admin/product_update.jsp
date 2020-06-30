@@ -33,7 +33,7 @@
 </head>
 <body>
 <div class="page-container">
-    <form class="form form-horizontal" action="${pageContext.request.contextPath}/product/updateProduct.do">
+    <form class="form form-horizontal" action="${pageContext.request.contextPath}/product/updateProduct.do" id="productUpdateForm">
         <input type="hidden" name="id" value="${product.id}">
         <input type="hidden" name="user_id" value="${product.user_id}">
         <input type="hidden" name="image" value="${product.image}">
@@ -54,14 +54,17 @@
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品分类：</label>
             <div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
-				<select name="cid" class="select">
+				<select name="caid" class="select">
                     <c:forEach items="${categoryList}" var="category">
-                        <c:if test="${product.category.cname eq category.cname}">
-                            <option value="${product.cid}" selected="selected">${product.category.cname}</option>
+                        <c:if test="${product.caid == category.cid}">
+                            <option value="${category.cid}" selected="selected">${category.cname}</option>
                         </c:if>
-
-                        <option value="${category.cid}">${category.cname}</option>
+                        <c:if test="${product.caid != category.cid}">
+                            <option value="${category.cid}" >${category.cname}</option>
+                        </c:if>
                     </c:forEach>
+
+
 
 				</select>
 				</span>
@@ -72,7 +75,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">商品发布时间：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="${product.start_time}" placeholder="" id="start_time" name="start_time">
+                <input type="text" class="input-text" value="${product.start_time}" placeholder="" id="start_time" name="start_time" readonly="readonly">
             </div>
         </div>
         <div class="row cl">
@@ -128,6 +131,33 @@
         alert("刷新父级的时候会自动关闭弹层。")
         window.parent.location.reload();
     }
+
+
+    $(function(){
+        $("#productUpdateForm").validate({
+            rules: {
+                "name": {
+                    "required": true
+                    //"checkUsername":true
+                },
+                "price": {
+                    "required": true,
+
+                },
+
+                messages: {
+                    "name": {
+                        "required": "商品名不能为空",
+
+                    },
+                    "price": {
+                        "required": "价格不能为空",
+
+                    },
+
+                }
+            }
+    });
 
     $(function(){
         $('.skin-minimal input').iCheck({

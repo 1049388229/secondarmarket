@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>我的发布</title>
+    <title>我的闲置</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Fav Icon
@@ -71,7 +71,8 @@
                                 <!-- Product Hover Action -->
                                 <div class="pro-hover-action animated text-center">
 
-                                    <a href="${pageContext.request.contextPath}/product/getProductBypid.do?pid=${product.id}" class="quick-view pro-action" data-toggle="modal"><i class="mo-eye"></i></a>
+                                    <a href="${pageContext.request.contextPath}/product/productImformationBypid.do?pid=${product.id}" class="quick-view pro-action" data-toggle="modal">编辑</a>
+                                    <a href="javascript:void(0)" onclick="deleteProduct('${product.id}')" class="quick-view pro-action" data-toggle="modal">删除</a>
 
                                 </div>
                                 <!-- Product Hover Options -->
@@ -431,6 +432,32 @@
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuU_0_uLMnFM-2oWod_fzC0atPZj7dHlU"></script> -->
 <script>
     new WOW().init();
+</script>
+
+<script>
+    function deleteProduct(pid) {
+        $.ajax({
+            url:"${pageContext.request.contextPath}/product/deleteProduct.do",
+            type:"POST",
+            data:{"pid":pid},
+            dataType: "json",
+            success:function (data) {
+                var flag=data.flag;
+                var msg=data.msg;
+                if (flag=="1"){
+                    alert(msg);
+                    window.location.href="${pageContext.request.contextPath}/user/myProduct.do"
+                }else if(flag=="2"){
+                    alert(msg);
+                }else {
+                    alert("系统错误")
+                }
+            }
+
+
+        });
+
+    }
 </script>
 <!-- Main JS
 ============================================ -->

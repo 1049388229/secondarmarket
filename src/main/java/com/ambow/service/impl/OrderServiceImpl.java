@@ -4,6 +4,7 @@ package com.ambow.service.impl;
 import com.ambow.dao.OrderDao;
 import com.ambow.pojo.Order;
 import com.ambow.service.OrderService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Service("orderservice")
 public class OrderServiceImpl implements OrderService {
+
 
     @Resource
     private OrderDao orderDao;
@@ -45,4 +47,37 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getAllOrder() {
         return orderDao.getAllOrder();
     }
+
+    @Override
+    public Order getOrderInformationByOid(String oid) {
+        return orderDao.getOrderInformationByOid(oid);
+    }
+
+    @Override
+    public Order getOrderByOid(String oid) {
+        return orderDao.getOrderByOid(oid);
+    }
+
+    @Override
+    public List<Order> getOrderBypid(int pid) {
+        return orderDao.getOrderBypid(pid);
+    }
+
+    @Override
+    public void deleteOrder(String oid) {
+        orderDao.deleteOrder(oid);
+    }
+
+    @Override
+    public List<Order> selectAllOrder(int page, int size) {
+        PageHelper.startPage(page,size);
+        return orderDao.getAllOrder();
+    }
+
+    @Override
+    public List<Order> getOrderLike(String oid, int page, int size) {
+        PageHelper.startPage(page,size);
+        return orderDao.getOrderLike(oid);
+    }
+
 }

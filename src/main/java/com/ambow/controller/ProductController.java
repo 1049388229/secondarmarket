@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -21,7 +22,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @SessionAttributes("cart")
 @Controller
 @RequestMapping("/product")
@@ -41,6 +45,9 @@ public class ProductController {
 
     @Resource
     private CommentsService commentsService;
+
+    @Resource
+    private OrderService orderService;
 
     @RequestMapping("/newsProduct.do")
     public ModelAndView getAllProduct(ModelMap modelMap){
@@ -70,13 +77,22 @@ public class ProductController {
 
 
     @RequestMapping("/getProductBypid.do")
-    public ModelAndView getProductBypid(@RequestParam(name = "pid",required = true) int id){
+    public ModelAndView getProductBypid(@RequestParam(name = "pid",required = true) int id,HttpServletRequest request){
+        User user= (User) request.getSession().getAttribute("userLogin");
         ModelAndView mv=new ModelAndView();
         Product product=productService.getProductUserBypid(id);
         List<Comments> commentsList=commentsService.getProductComments(id);
-        mv.addObject("comments",commentsList);
-        mv.addObject("productBypid",product);
-        mv.setViewName("product-details");
+        if (user==null){
+            mv.addObject("comments",commentsList);
+            mv.addObject("productBypid",product);
+            mv.setViewName("product-details");
+        }else {
+            mv.addObject("userLogin",user);
+            mv.addObject("comments",commentsList);
+            mv.addObject("productBypid",product);
+            mv.setViewName("product-details");
+        }
+
         return mv;
     }
 
@@ -94,40 +110,27 @@ public class ProductController {
 
 
     @RequestMapping("/pubProduct.do")
-    public String pubMyproduct(Product product,HttpServletRequest request) throws Exception {
+    public String pubMyproduct(Product product,HttpServletRequest request,HttpServletResponse res) throws Exception {
         User user=(User) request.getSession().getAttribute("userLogin");
-
-
-            //文件上传
-            MultipartHttpServletRequest mr = (MultipartHttpServletRequest) request;
-            //获得上传的文件mr.getFile(String fileName),fileName是<input type="file" name="pic"><br>中pic
+        res.setCharacterEncoding("utf-8");
+        res.setContentType("text/html; charset=UTF-8"); //转码
+        res.setHeader("Cache-Control", "no-cache");
+        PrintWriter out1 = res.getWriter();
+        MultipartHttpServletRequest mr = (MultipartHttpServletRequest) request;
+            //获得上传的文件名称
             CommonsMultipartFile cf = (CommonsMultipartFile) mr.getFile("images");
             byte[] fb = cf.getBytes();
-        System.out.println(cf+"***********************************************");
-            //------- 使用 时间戳和随机三位值 生成不重复的文件名称
             String fileName = "";
-
             fileName = UUIDUtils.getCode();
-            //加三位随机数
-
-
-            //原始文件名
             String oriFileName = cf.getOriginalFilename();
-
-            //获取后缀名 包含.
+            //获取后缀名
             String suffix = oriFileName.substring(oriFileName.lastIndexOf("."));
-            //-------
-            //获取路径   文件上传到服务器中的那个路径下
             String imageName=fileName + suffix;
-
-            //在 服务器路径下 创建一个空文件
-
+            //定义上传的服务器文件夹路径
             String path = "E:/javaworkspace/ideaworkspace/secondarmarket/src/main/webapp/product";
-
+           //将服务器中上传的文件写入到本地
             String pathTomcat = "F:/kaifagongju/apache-tomcat-8.5.43/webapps/secondarmarket_war/product";
             OutputStream out = new FileOutputStream(path+"/"+imageName);
-
-            //将内存中上传的文件写入到 空文件中
             out.write(fb);
             out.flush();
             out.close();
@@ -141,20 +144,23 @@ public class ProductController {
             String startime = sdf.format(date);
             product.setStart_time(startime);
             product.setStatus(1);
-
             try {
+                //商品发布成功后，返回到首页
                 productService.pubMyproduct(product);
-
+                out1.println("<script>");
+                out1.println("alert('发布成功');");
+                out1.println("</script>");
             }catch (Exception e){
+                //商品发布成功后提示用户
                 e.printStackTrace();
-                request.setAttribute("msg","发布失败，请重新发布！");
+                out.flush();
+                out1.println("<script>");
+                out1.println("alert('发布失败');");
+                out1.println("history.back();");
+                out1.println("</script>");
 
-                return "info";
             }
-
-
-
-        return "index";
+        return "shouye";
 
     }
 
@@ -204,25 +210,33 @@ public class ProductController {
         ModelAndView mv=new ModelAndView();
         Product product=productService.getProductUserBypid(pid);
         User user= (User) request.getSession().getAttribute("userLogin");
-        if (user.getUser_id().equals(product.getUser_id())){
+        res.setCharacterEncoding("utf-8");
+        res.setContentType("text/html; charset=UTF-8"); //转码
+        res.setHeader("Cache-Control", "no-cache");
+        PrintWriter out = res.getWriter();
+               if (user==null){
+                   out.flush();
+                   out.println("<script>");
+                   out.println("alert('请先登录.');");
+                   out.println("</script>");
+                   mv.setViewName("login");
+                   return mv;
+               }else {
+                   if (user.getUser_id().equals(product.getUser_id())) {
 
-            res.setCharacterEncoding("utf-8");
-            res.setContentType("text/html; charset=UTF-8"); //转码
-            res .setHeader("Cache-Control", "no-cache");
-            PrintWriter out = res.getWriter();
-            out.flush();
-            out.println("<script>");
-            out.println("alert('您不能购买自己的商品，请重新购买');");
-            out.println("history.back();");
-            out.println("</script>");
-            return  null;
+                       out.flush();
+                       out.println("<script>");
+                       out.println("alert('您不能购买自己的商品，请重新购买');");
+                       out.println("history.back();");
+                       out.println("</script>");
+                       return null;
+                   } else {
+                       mv.addObject("confirmproduct", product);
+                       mv.setViewName("commitOrder");
+                       return mv;
+                   }
 
-        }else{
-            mv.addObject("confirmproduct",product);
-            mv.setViewName("commitOrder");
-            return mv;        }
-
-
+               }
 
 
     }
@@ -276,6 +290,25 @@ public class ProductController {
         return "redirect:/product/getAllProduct.do";
     }
 
+    @RequestMapping("/userUpdateProduct.do")
+    public String userUpdateProduct(Product product,HttpServletResponse response) throws IOException {
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html; charset=UTF-8"); //转码
+        response.setHeader("Cache-Control", "no-cache");
+        PrintWriter out = response.getWriter();
+        try {
+            productService.updateProduct(product);
+            out.println("<script> alert('修改成功); history.back(); </script>");
+            return "upMyProduct";
+        }catch (Exception e){
+            out.println("<script> alert('确认失败，请重新确认'); history.back(); </script>");
+            return null;
+        }
+
+
+
+    }
+
     @RequestMapping("/likeProduct.do")
     public ModelAndView likeProduct(@RequestParam(name = "productName")String productName){
         List<Product> productsList=productService.likeProduct(productName);
@@ -283,6 +316,66 @@ public class ProductController {
         mv.addObject("productsList",productsList);
         mv.setViewName("serchProduct");
         return mv;
+    }
+
+    @RequestMapping("/deleteProduct.do")
+    @ResponseBody
+    public Map<String,String> deleteProduct(@RequestParam(name = "pid")int pid){
+
+        String flag = "0";
+        String msg = "0";
+       try{
+           productService.deleteProduct(pid);
+           flag="1";
+           msg="删除成功";
+       }catch (Exception e){
+           e.printStackTrace();
+           flag="2";
+           msg="删除失败";
+       }
+        Map<String, String> map =new HashMap<>();
+        map.put("flag", flag);
+        map.put("msg", msg);
+        return map;
+    }
+
+
+
+    @RequestMapping("/productImformationBypid.do")
+    public ModelAndView productImformationBypid(@RequestParam(name = "pid")int pid){
+        ModelAndView mv=new ModelAndView();
+        List<Category> cLists=categoryService.getAllCategory();
+
+        Product product=productService.getAllProductBypid(pid);
+        mv.addObject("cLists",cLists);
+        mv.addObject("product",product);
+        mv.setViewName("myproduct-details");
+        return mv;
+    }
+
+
+
+
+    @RequestMapping("/getProductLike.do")
+    public ModelAndView getOrderLike(@RequestParam(name="name")String name,@RequestParam(name = "page" ,required = true,defaultValue = "1")int page,@RequestParam(name = "size" ,required = true,defaultValue = "10")int size) {
+        ModelAndView mv = new ModelAndView();
+        if (name.equals("")||name.equals(null)){
+            List<Product> products=productService.getAllProducts(page,size);
+            PageInfo pageInfo=new PageInfo(products);
+            mv.addObject("pageInfoProduct",pageInfo);
+            mv.setViewName("admin/product_list");
+            return  mv;
+        }else {
+            List<Product> listProduct = productService.getProductLike(name,page,size);
+
+            PageInfo pageInfo=new PageInfo(listProduct);
+            mv.addObject("pageInfoProduct",pageInfo);
+            mv.setViewName("admin/product_list");
+
+            return mv;
+        }
+
+
     }
 
 

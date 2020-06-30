@@ -186,7 +186,7 @@
                 $(".Withdrawals").val("");
                 //提交表单
                 $("#myUpAndDwon").submit();
-                alert("申请充值成功，等待管理员审核~")
+                alert("充值成功")
             }
 
         }
@@ -202,7 +202,7 @@
                 $(".Recharge").val("");
                 //提交表单
                 $("#myUpAndDwon").submit();
-                alert("申请提现成功，等待管理员审核~")
+                alert("提现成功")
             }
         }
 

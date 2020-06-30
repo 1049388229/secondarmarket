@@ -62,7 +62,9 @@
                         <div class="pro-review-container">
                             <c:forEach items="${listNeeds}" var="need">
                             <div class="sin-pro-review">
-
+                                <div class="rev-image float-left">
+                                    <img src="${pageContext.request.contextPath}/img/comments/1.png" alt="" />
+                                </div>
                                 <div class="rev-content fix">
                                     <div class="rev-head">
                                         <h3>${need.user.username}</h3>
@@ -70,6 +72,12 @@
 
                                     </div>
                                     <p>${need.nmessage}</p>
+                                    <c:if test="${userNeeds.user_id eq need.uid}">
+                                        <a onclick="deleteNeeds('${need.nid}')"> <h4>删除</h4></a>
+                                    </c:if>
+
+
+
                                 </div>
 
                             </div>
@@ -203,5 +211,31 @@
 <!-- Main JS
 ============================================ -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+<script type="text/javascript">
+
+    function deleteNeeds(nid) {
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/needs/deleteNeeds.do",
+            data: {"nid":nid},
+            dataType: "json",
+            async: false,
+            success: function(data){
+                var flag=data.flag;
+                var msg=data.msg;
+                if(flag=="1"){
+                    alert(msg) ;
+                    window.location.href="${pageContext.request.contextPath}/needs/getNeedProduct.do";
+
+                }else if(flag=="2"){
+                    alert(msg)
+                }else {
+                    alert(系统错误);
+                }
+            }
+        });
+    }
+
+</script>
 </body>
 </html>

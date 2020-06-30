@@ -109,7 +109,7 @@
 					font-weight: 700;
 					font-style: italic;
 					letter-spacing: -.25px;"
-                >维度 <br />校园二手交易</div>
+                >维度 <br />校园二手交易平台</div>
                 <!-- CAPTION 2 -->
                 <a href="#" class="tp-caption sfb caption2 shop-now"
                    data-x="475"
@@ -144,29 +144,8 @@
     <div class="container">
         <div class="row">
             <div class="two-column-promo-container col-xs-12">
-                <div class="sin-promo col-xs-6 fix">
-                    <div class="promo-border-top-bottom"></div>
-                    <div class="promo-border-left-right"></div>
-                    <a href="#" class="image"><img src="${pageContext.request.contextPath}/img/2-column-promo/3.jpg" alt="promo" /></a>
-                    <div class="promo-title promo-title-left">
-                        <h1>Daniel<br> Wellington<br> Collection.</h1>
-                    </div>
-                    <div class="links">
-                        <a href="#">Shop COLLECTION <i class="mo-arrow-right"></i></a>
-                        <a href="#">all watches <i class="mo-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="sin-promo sin-promo-right col-xs-6 fix">
-                    <div class="promo-border-top-bottom"></div>
-                    <div class="promo-border-left-right"></div>
-                    <a href="#" class="image"><img src="${pageContext.request.contextPath}/img/2-column-promo/4.jpg" alt="promo" /></a>
-                    <div class="promo-title promo-title-right">
-                        <h1>Daniel<br> Wellington<br> Collection.</h1>
-                    </div>
-                    <div class="links">
-                        <a href="#">VIEW the PACK <i class="mo-arrow-right"></i></a>
-                    </div>
-                </div>
+
+
             </div>
         </div>
     </div>

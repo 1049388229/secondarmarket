@@ -110,11 +110,16 @@
                                         </div>
                                         <div class="rev-content fix">
                                             <div class="rev-head">
+
                                                 <h3>${commment.user.username}</h3>
                                                 <span>${commment.create_at}</span>
 
+
                                             </div>
                                             <p>${commment.content}</p>
+                                            <c:if test="${commment.user_id eq userLogin.user_id}">
+                                                <a onclick="deleteComments('${commment.id}','${productBypid.id}')"> <h4>删除</h4></a>
+                                            </c:if>
                                         </div>
                                     </div>
                                     </c:forEach>
@@ -123,11 +128,11 @@
 
                                 <div class="pro-rev-form fix">
                                     <h2>请输入评论</h2>
-                                    <form action="${pageContext.request.contextPath}/comments/addComments.do" id="rev-form" class="moon-form" method="post">
+                                    <form action="${pageContext.request.contextPath}/comments/addComments.do" id="contentForm" class="moon-form" method="post">
                                         <input type="hidden" value="${productBypid.id}" name="pid">
 
                                         <div class="input-box">
-                                            <textarea name="content" id="rev-message" placeholder="Message" rows="5"></textarea>
+                                            <textarea name="content" id="content" placeholder="Message" rows="5"></textarea>
                                         </div>
                                         <div class="input-box">
                                             <input type="submit" value="评论">
@@ -139,16 +144,16 @@
 
                                 <div class="pro-color-size fix">
                                     <div class="pro-color">
-                                        <h4>联系电话:</h4>
+                                        <h4>卖家:</h4>
                                         <ul>
-                                            <li>${productBypid.user.telephone}</li>
+                                            <li>来自${productBypid.yuanxi.yname}的${productBypid.user.username}</li>
 
                                         </ul>
                                     </div>
                                     <div class="pro-size">
-                                        <h4>QQ:</h4>
+                                        <h4>联系电话:</h4>
                                         <ul>
-                                            <li>${productBypid.user.qq}</li>
+                                            <li>${productBypid.user.telephone}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -295,6 +300,51 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
 
 <script type="text/javascript">
+
+        $(function(){
+            $("#contentForm").validate({
+                rules:{
+                    "content":{
+                        "required":true
+                        //"checkUsername":true
+                    }
+
+
+                },
+                messages:{
+                    "content":{
+                        "required":"评论不能为空",
+
+                    },
+
+                }
+            });
+        });
+
+
+    
+    function deleteComments(id,pid) {
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/comments/deleteComments.do",
+            data: {"id":id},
+            dataType: "json",
+            async: false,
+            success: function(data){
+                var flag=data.flag;
+                var msg=data.msg;
+                if(flag=="1"){
+                    alert(msg) ;
+                    window.location.href="${pageContext.request.contextPath}/product/getProductBypid.do?pid="+pid;
+
+                }else if(flag=="2"){
+                    alert(msg)
+                }else {
+                    alert(系统错误);
+                }
+            }
+        });
+    }
 
 </script>
 </body>

@@ -14,8 +14,35 @@ public class Order {
     private String dealAddress;
     private String dealdate;
     private  Integer order_state;
+    private String pname;
+    private float pprice;
+    private String pimage;
     private Product product;
     private User user;
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
+    public float getPprice() {
+        return pprice;
+    }
+
+    public void setPprice(float pprice) {
+        this.pprice = pprice;
+    }
+
+    public String getPimage() {
+        return pimage;
+    }
+
+    public void setPimage(String pimage) {
+        this.pimage = pimage;
+    }
 
     public float getOrder_price() {
         return order_price;

@@ -46,15 +46,19 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 分类管理 <span class="c-gray en">&gt;</span> 分类列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
     <div class="text-c">
-        <input type="text" name="" id="" placeholder=" 分类名称" style="width:250px" class="input-text">
+        <form action="${pageContext.request.contextPath}/category/getCategoryLike.do" method="post">
+
+        <input type="hidden" name="page" value="1">
+            <input type="hidden" name="size" value="10">
+        <input type="text" name="cname" id="cname" placeholder=" 分类名称" style="width:250px" class="input-text">
         <button name=""  class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜分类</button>
+        </form>
     </div>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius"  href="${pageContext.request.contextPath}/page/admin/category-add.jsp"><i class="Hui-iconfont">&#xe600;</i> 添加分类 </a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+    <div class="cl pd-5 bg-1 bk-gray mt-20">  <a class="btn btn-primary radius"  href="${pageContext.request.contextPath}/page/admin/category-add.jsp"><i class="Hui-iconfont">&#xe600;</i> 添加分类 </a></span>  </div>
     <div class="mt-20">
         <table class="table table-border table-bordered table-bg table-hover table-sort">
             <thead>
-            <tr class="text-c">
-                <th width="40"><input name="" type="checkbox" value=""></th>
+            <tr class="text-c">.
                 <th width="80">分类编号</th>
                 <th width="100">分类名称</th>
                 <th width="150">分类状态</th>
@@ -62,20 +66,18 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${categories}" var="category">
+            <c:forEach items="${categories.list}" var="category">
                 <tr class="text-c">
-                    <td><input name="" type="checkbox" value=""></td>
-
                     <td>${category.cid}</td>
                     <td>${category.cname}</td>
 
                     <c:if test="${category.state eq '1'}">
-                        <td class="td-status"><span class="label label-success radius">启用</span></td>
+                        <td class="td-status"><span class="label label-success radius">在用</span></td>
                     </c:if>
                     <c:if test="${category.state  eq '0'}">
-                        <td class="td-status"><span class="label label-success radius">禁用</span></td>
+                        <td class="td-status"><span class="label label-success radius">被禁</span></td>
                     </c:if>
-                    <td class="td-manage"><a style="text-decoration:none" href="${pageContext.request.contextPath}/category/selectCategoryBycid.do?cid=${category.cid}" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                    <td class="td-manage"><a style="text-decoration:none" href="${pageContext.request.contextPath}/category/selectCategoryBycid.do?cid=${category.cid}" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> </td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -83,7 +85,7 @@
         <div class="text-c" >
             <ul >
                 <li>
-                    <a href="" aria-label="Previus" >首页</a>&nbsp;&nbsp;&nbsp;<a href="">上一页</a>&nbsp;<a href="">下一页</a>&nbsp;&nbsp;&nbsp;<a href="">尾页</a>
+                    <a href="${pageContext.request.contextPath}/category/getAdminCatelogy.do?page=1&size=${categories.pageSize}" aria-label="Previus" >首页</a>&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/category/getAdminCatelogy.do?page=${categories.pageNum-1}&size=${orders.pageSize}">上一页</a><c:forEach begin="1" end="${categories.pages}" var="pageNum"> &nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/category/getAdminCatelogy.do?page=${pageNum}&size=${categories.pageSize}">${pageNum}</a> &nbsp;&nbsp;&nbsp;</c:forEach>&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/category/getAdminCatelogy.do?page=${categories.pageNum+1}&size=${categories.pageSize}">下一页</a>&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/category/getAdminCatelogy.do?page=${categories.pages}&size=${categories.pageSize}">尾页</a>
                 </li>
 
             </ul>

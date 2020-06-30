@@ -72,7 +72,7 @@
                                 <div class="pro-hover-action animated text-center">
 
                                     <a href="${pageContext.request.contextPath}/product/getProductBypid.do?pid=${product.id}" class="quick-view pro-action" data-toggle="modal"><i class="mo-eye"></i></a>
-                                    <a href="#quick-view" class="quick-view pro-action" data-toggle="modal"><i class="mo-heart"></i></a>
+
                                 </div>
                                 <!-- Product Hover Options -->
                                 <div class="pro-hover-option">

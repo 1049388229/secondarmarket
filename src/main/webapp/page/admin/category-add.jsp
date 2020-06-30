@@ -11,35 +11,88 @@
 <html>
 <script type="text/javascript">
 
-    function addjh(){
+    function checkTelephone() {
 
         var cname=$.trim($("#cname").val());
-        var state=$.trim($("#state").val());
 
-        var parm ={};
-        parm.cname=cname;
-        parm.state=state;
+
+        var flag=false;
         $.ajax({
-            url:"${pageContext.request.contextPath}/category/addCategory.do",
-            type:"post",
-            dataType:"json",
-            data:parm,
-            success:function(data){
-                var flag=data.flag;
-                var msg=data.msg;
-                if (flag=="1"){
-                    alert(msg);
-                    window.location.href="${pageContext.request.contextPath}/category/getAdminCatelogy.do"
-                }else if(flag=="2"){
-                    alert(msg);
-                }else {
-                    alert("系统错误")
-                }
-
+            "async":false,
+            "url":"${pageContext.request.contextPath}/category/checkCategory.do",
+            "data":{"cname":cname},
+            "type":"POST",
+            "dataType":"json",
+            "success":function (data) {
+                flag=data
             }
-        })
+
+        });
+
+        return !flag;
+    }
+
+    function iscname() {
+        var flag = false;
+        var cname = $.trim($("#cname").val());
+
+
+        $("#cname").val(cname);
+        if (cname.length ==0) {
+            $("#cnamespan").html("商品类别不能为空");
+            $("#cnamespan").show();
+            return flag;
+        } else {
+            if (checkTelephone()==false){
+                $("#cnamespan").html("商品类别已存在");
+                $("#cnamespan").show();
+            }else{
+                flag -= true;
+                return flag;
+            }
+
+        }
 
     }
+
+
+    function addjh(){
+
+if(iscname()){
+    var cname=$.trim($("#cname").val());
+    var state=$.trim($("#state").val());
+
+    var parm ={};
+    parm.cname=cname;
+    parm.state=state;
+
+    $.ajax({
+        url:"${pageContext.request.contextPath}/category/addCategory.do",
+        type:"post",
+        dataType:"json",
+        data:parm,
+        success:function(data){
+            var flag=data.flag;
+            var msg=data.msg;
+            if (flag=="1"){
+                alert(msg);
+                window.location.href="${pageContext.request.contextPath}/category/getAdminCatelogy.do"
+            }else if(flag=="2"){
+                alert(msg);
+            }else {
+                alert("系统错误")
+            }
+
+        }
+    })
+
+}
+
+    }
+
+
+
+
     </script>
 <head>
     <meta charset="utf-8">
@@ -70,7 +123,9 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">分类名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="cname" name="cname">
+                <input type="text" class="input-text" value="" placeholder="" id="cname" name="cname" onblur="iscname()">
+                </br>
+                <i id="cnamespan" class="p_tip"></i>
             </div>
         </div>
         <div class="row cl">

@@ -11,7 +11,55 @@
 <html>
 <script type="text/javascript">
 
+    function checkUpCname() {
+
+        var cname=$.trim($("#cname").val());
+        var cid=$.trim($("#cid").val());
+        var parm ={};
+        parm.cid = cid;
+        parm.cname=cname;
+
+        var flag=false;
+        $.ajax({
+            "async":false,
+            "url":"${pageContext.request.contextPath}/category/checkUpCname.do",
+            "data":parm,
+            "type":"POST",
+            "dataType":"json",
+            "success":function (data) {
+                flag=data
+            }
+
+        });
+
+        return !flag;
+    }
+
+    function isUpcname() {
+        var flag = false;
+        var cname = $.trim($("#cname").val());
+
+
+        $("#cname").val(cname);
+        if (cname.length ==0) {
+            $("#cnamespan").html("商品类别不能为空");
+            $("#cnamespan").show();
+            return flag;
+        } else {
+            if (checkUpCname()==false){
+                $("#cnamespan").html("商品类别已存在");
+                $("#cnamespan").show();
+            }else{
+                flag -= true;
+                return flag;
+            }
+
+        }
+
+    }
+
     function jh(){
+        if (isUpcname() ){
         var cid=$.trim($("#cid").val());
         var cname=$.trim($("#cname").val());
         var state=$.trim($("#state").val());
@@ -39,6 +87,7 @@
 
             }
         })
+        }
 
     }
     </script>
@@ -70,19 +119,29 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类编号：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="${category.cid}" placeholder="" id="cid" name="cid">
+                <input type="text" class="input-text" value="${category.cid}" placeholder="" id="cid" name="cid" readonly="readonly">
+
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">分类名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="${category.cname}" placeholder="" id="cname" name="cname">
+                <input type="text" class="input-text" value="${category.cname}" placeholder="" id="cname" name="cname" onblur="isUpcname()">
+                </br>
+                <i id="cnamespan" class="p_tip"></i>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类状态：</label>
-            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+            <div class="formControls col-xs-8 col-sm-9"><span class="select-box">
 				<select name="state" class="select" id="state">
+                    <c:if test="${category.state eq '0'}">
+                        <option value="0" selected="selected">禁用</option>
+                    </c:if>
+                    <c:if test="${category.state eq '1'}">
+                      <option value="1" selected="selected">正常</option>
+                    </c:if>
+
                     <option value="1" >正常</option>
 					<option value="0" >禁用</option>
 

@@ -29,39 +29,142 @@
     <title>维度 后台登录</title>
 
 </head>
+<script type="text/javascript">
+
+    document.onkeydown=function(e){
+        var keycode=document.all?event.keyCode:e.which;
+        if(keycode==13)Adminsubmitlogin();
+    };
+
+    function isAdminTelephone(){
+        var name=$.trim($("#telephone").val());
+        $("#telephone").val(name);
+        if(name==""){
+            $("#telephonespan").html("手机号码不能为空");
+            $("#telephonespan").show();
+            return false;
+        }else{
+            $("#telephonespan").hide();
+            return true;
+        }
+    }
+
+    function isAdminPwd(){
+        var pwd=$.trim($("#password").val());
+        $("#password").val(pwd);
+        if(pwd.length<6){
+            $("#pwdspan").html("密码长度不能小于6位");
+            $("#pwdspan").show();
+            return false;
+        }else{
+            $("#pwdspan").hide();
+            return true;
+        }
+    }
+
+    function isAdminyanzhengma() {
+        var flag = false;
+        var yanzhengma = $.trim($("#yanzhengma").val());
+        $("#yanzhengma").val(yanzhengma);
+        if (yanzhengma.length < 1) {
+            $("#yanzhengmaspan").html("验证码不能为空");
+            $("#yanzhengmaspan").show();
+            return flag;
+        } else {
+            flag -= true;
+            return flag;
+        }
+
+    }
+
+    function Adminsubmitlogin(){
+
+        if(isAdminTelephone()&&isAdminPwd()&&isAdminyanzhengma()){
+
+            var phone=$.trim($("#telephone").val());
+            var pwd=$.trim($("#password").val());
+            var yanzhengma=$.trim($("#yanzhengma").val());
+
+            var param={};
+            param.telephone=phone;
+            param.password=pwd;
+            param.yanzhengma=yanzhengma;
+
+
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/admin/adminlogin.do",
+                data: param,
+                dataType: "json",
+                async: false,
+                success: function(data){
+                    var flag=data.flag;
+                    var msg=data.msg;
+                    if(flag=="2"){
+                        $("#telephonespan").html("账户不存在");
+                        $("#telephonespan").show();
+                    }else if(flag=="3"){
+                        $("#pwdspan").html("密码错误");
+                        $("#pwdspan").show();
+                        $("#telephonespan").hide();
+                    }else if(flag=="1"){
+                        $("#yanzhengmaspan").html("验证码错误");
+                        $("#yanzhengmaspan").show();
+                        $("#namespan").hide();
+                        $("#pwdspan").hide();
+
+                    }else if(flag=="4"){
+                        alert(msg);
+                        window.location.href="${pageContext.request.contextPath}/admin/adminIndex.do"
+
+                    }else{
+                        alert("系统错误");
+                    }
+                }
+            });
+        }
+    }
+    function updateAdminyanzhengma(){
+        document.getElementById('yanzhengmaimg').src= '${pageContext.request.contextPath}/yanzhengma/index.do?t='+new Date().getTime();
+
+    }
+</script>
 <body>
 <input type="hidden" id="TenantId" name="TenantId" value="" />
 <div class="header"></div>
 <div class="loginWraper">
     <div id="loginform" class="loginBox">
-        <form class="form form-horizontal" action="${pageContext.request.contextPath}/admin/adminlogin.do" method="post">
+        <form class="form form-horizontal" id="form">
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
                 <div class="formControls col-xs-8">
-                    <input id="aaa" name="username" type="text" placeholder="用户名" class="input-text size-L">
+                    <input id="telephone" name="telephone" type="text" placeholder="管理员账户" class="input-text size-L" onblur="isAdminTelephone()"></br>
+                   <i id="telephonespan" class="p_tip"></i>
                 </div>
+
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
                 <div class="formControls col-xs-8">
-                    <input id="" name="password" type="password" placeholder="密码" class="input-text size-L">
+                    <input id="password" name="password" type="password" placeholder="密码" class="input-text size-L" onblur="isAdminPwd()"></br>
+                    <i id="pwdspan" class="p_tip"></i>
                 </div>
+
             </div>
             <div class="row cl">
                 <div class="formControls col-xs-8 col-xs-offset-3">
-                    <input class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
-                    <img src=""> <a id="kanbuq" href="javascript:;">看不清，换一张</a> </div>
-            </div>
-            <div class="row cl">
-                <div class="formControls col-xs-8 col-xs-offset-3">
-                    <label for="online">
-                        <input type="checkbox" name="online" id="online" value="">
-                        使我保持登录状态</label>
+
+
+                    <input class="input-text size-L" type="text" id="yanzhengma" placeholder="验证码" onblur="isAdminyanzhengma()" style="width:150px;">
+                    <img src="${pageContext.request.contextPath}/yanzhengma/index.do" alt="验证码" height="30px;" id="yanzhengmaimg" onclick="updateAdminyanzhengma();"> </br>
+                    <i id="yanzhengmaspan" class="p_tip"></i>
                 </div>
+
             </div>
+
             <div class="row cl">
                 <div class="formControls col-xs-8 col-xs-offset-3">
-                    <input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
+                    <input name="" type="button" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;" onclick="Adminsubmitlogin()"/>
                     <input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
                 </div>
             </div>

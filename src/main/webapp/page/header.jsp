@@ -22,7 +22,7 @@
                 <div class="header-top-left col-sm-6">
                     <ul class="header-login-reg float-left">
                         <li><a href="${pageContext.request.contextPath}/page/login.jsp">登录</a></li>
-                        <li><a href="${pageContext.request.contextPath}/page/register.jsp">注册</a></li>
+                        <li><a href="${pageContext.request.contextPath}/user/userRegieterjsp.do">注册</a></li>
                     </ul>
                 </div>
 
@@ -52,7 +52,7 @@
                         <li><a href="${pageContext.request.contextPath}/user/myPurse.do">我的钱包</a></li>
                     </ul>
                 </li>
-                <li><a href="#">登录后台</a></li>
+                <li><a href="${pageContext.request.contextPath}/page/admin/login.jsp">登录后台</a></li>
             </ul>
         </div>
             </c:if>
@@ -86,7 +86,7 @@
                         <li class="active"><a href="${pageContext.request.contextPath}/page/shouye.jsp">首页</a>
                         </li>
                         <li><a href="${pageContext.request.contextPath}/category/getCategory.do">发布商品</a></li>
-                        <li><a href="${pageContext.request.contextPath}/needs/getNeedProduct.do">发布求购</a></li>
+                        <li><a href="${pageContext.request.contextPath}/needs/getNeedProduct.do">求购信息</a></li>
                     </ul>
                 </nav>
             </div>

@@ -98,11 +98,11 @@
 
                                                         <div class="input-box">
                                                             交易时间:
-                                                            <input type="text" name="dealDate"   />
+                                                            <input type="text" name="dealDate"  id="dealDate" />
                                                         </div>
                                                         <div class="input-box">
                                                             交易地点:
-                                                            <input type="text" name="dealAddress"   />
+                                                            <input type="text" name="dealAddress"   id="dealAddress"/>
 
                                                         </div>
                                                         <input type="submit" value="立即支付" />
@@ -226,5 +226,35 @@
 <!-- Main JS
 ============================================ -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#cart-form").validate({
+            rules:{
+                "dealDate":{
+                    "required":true
+                    //"checkUsername":true
+                },
+                "dealAddress":{
+                    "required":true,
+
+                },
+
+
+            },
+            messages:{
+                "dealDate":{
+                    "required":"交易时间不能为空",
+
+                },
+                "dealAddress":{
+                    "required":"交易地点不能为空",
+
+                }
+            }
+        });
+    });
+
+</script>
 </body>
 </html>

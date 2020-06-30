@@ -27,6 +27,14 @@
     ============================================ -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/custom-style.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/biecssjs/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/biecssjs/css/userhome.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/biecssjs/css/user.css" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/biecssjs/css/bootstrap.min.css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/biecssjs/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/biecssjs/js/bootstrap.min.js"></script>
     <!-- RS-slider CSS
     ============================================ -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/lib/rs-plugin/css/settings.css" media="screen" />
@@ -65,45 +73,60 @@
             <div class="col-sm-8 col-sm-offset-2">
 
 
-                <div class="blog-comments fix">
+                        <div class="basic">
+                            <form  action="${pageContext.request.contextPath}/user/updateMyInformation.do" method="post" >
+                                <h1>修改个人信息</h1><hr />
+                                <div class="changeinfo">
+                                    <span>姓名：</span>
+                                    <input class="in_info" type="text" name="username" placeholder="请输入昵称" value="${myUser.username}"/>
+                                </div><hr />
+                                <div class="changeinfo">
+                                    <span>手机号码：</span>
+                                    <input class="in_info" type="text" name="telephone" value="${myUser.telephone}" readonly="true"/>
+                                    <span id="checkphone">已验证</span>
+                                </div><hr />
+                                <div class="changeinfo">
+                                    <span>密码：</span>
+                                    <input class="in_info" type="text" name="password" value="${myUser.password}" />
+                                </div><hr />
+                                <div class="changeinfo">
+                                    <span>邮箱：</span>
+                                    <input class="in_info" type="text" name="email" placeholder="邮箱" value="${myUser.email}"/>
+                                </div><hr />
+                                <div class="changeinfo">
+                                    <span>学号：</span>
+                                    <input class="in_info" type="text" name="studentid" placeholder="学号" value="${myUser.studentid}"/>
+                                </div><hr />
+                                <div class="changeinfo">
+                                    <span>院系：</span>
+
+                                    <select name="yid" class="in_info">
+                                        <c:forEach items="${yuanXiList}"   var="yuanxi">
+                                            <c:if test="${yuanxi.id == myUser.yid}">
+                                            <option value="${yuanxi.id}" selected="selected">${yuanxi.yname}</option>
+                                            </c:if>
+                                            <c:if test="${yuanxi.id != myUser.yid}">
+                                                <option value="${yuanxi.id}">${yuanxi.yname}</option>
+                                            </c:if>
+
+                                        </c:forEach>
+                                    </select>
 
 
-                    <div class="comment-form">
-                        <h2>个人中心</h2>
-                        <form  id="myForm"  action="${pageContext.request.contextPath}/user/updateMyInformation.do" class="moon-form" method="post">
-                            <div class="input-box">
-                                用户名：
-                                <input type="text" placeholder="用户名" name="username" id="username" value="${myUser.username}">
-                            </div>
-                            <div class="input-box ">
-                                手机号码：
-                                <input type="text" placeholder="手机号码" name="telephone" id="telephone" value="${myUser.telephone}">
 
-                            </div>
+                                </div><hr />
+                                <div class="changeinfo">
+                                    <span>注册时间：</span>
+                                    <input class="in_info" type="text" name="createdate" placeholder="" value="${myUser.createdate}" readonly="true"/>
+                                </div><hr />
 
-                            <div class="input-box">
-                                Email:
-                                <input type="text" placeholder="Email" name="email" id="email" value="${myUser.email}">
-                            </div>
-                            <div class="input-box ">
-                                QQ:
-                                <input type="text" placeholder="QQ" name="qq" id="qq" value="${myUser.qq}">
-                            </div>
-                            <input type="hidden" name="password" value="${myUser.password}">
-                            <input type="hidden" name="user_id" value="${myUser.user_id}">
-                            <input type="hidden" name="createdate" value="${myUser.createdate}">
-                            <input type="hidden" name="state"  value="${myUser.state}">
-                            <input type="hidden" name="activeCode" value="${myUser.activeCode}">
-                            <input type="hidden" name="conditions" value="${myUser.conditions}">
+                                <input type="hidden" name="user_id" value="${myUser.user_id}">
+                                <input type="hidden" name="state"  value="${myUser.state}">
+                                <input type="hidden" name="conditions" value="${myUser.conditions}">
+                                <input type="submit" class="setting-save" value="保存修改信息" />
+                            </form>
+                        </div>
 
-
-
-                            <div class="input-box">
-                                <input type="submit" value="确认修改">
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

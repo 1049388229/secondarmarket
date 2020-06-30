@@ -34,4 +34,9 @@ public class NeedsServiceImpl implements NeedsService {
     public void deleteNeed(int nid) {
         needsDao.deleteNeed(nid);
     }
+
+    @Override
+    public void deleteNeeds(int nid) {
+        needsDao.deleteNeeds(nid);
+    }
 }

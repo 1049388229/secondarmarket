@@ -14,6 +14,23 @@ public class ProductServiceImpl implements ProductService {
 
     @Resource
     private ProductDao productDao;
+
+    @Override
+    public void deleteProduct(int productId) {
+        productDao.deleteProduct(productId);
+    }
+
+    @Override
+    public List<Product> getAllMyProducrByUid(String id) {
+        return productDao.getAllMyProducrByUid(id);
+    }
+
+    @Override
+    public List<Product> getProductLike(String name, int page, int size) {
+        PageHelper.startPage(page,size);
+        return productDao.getProductLike(name);
+    }
+
     @Override
     public List<Product> getAllProduct() {
         return productDao.getAllProduct();
@@ -67,4 +84,6 @@ public class ProductServiceImpl implements ProductService {
     public Product getAllProductBypid(int id) {
         return productDao.getAllProductBypid(id);
     }
+
+
 }

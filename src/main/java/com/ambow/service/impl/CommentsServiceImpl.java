@@ -19,6 +19,11 @@ public class CommentsServiceImpl implements CommentsService {
     }
 
     @Override
+    public void deleteComments(int id) {
+        commentsDao.deleteComments(id);
+    }
+
+    @Override
     public  void addComments(Comments comments){
         commentsDao.addComments(comments);
     }

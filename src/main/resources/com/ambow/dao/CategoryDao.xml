@@ -16,7 +16,7 @@
     </select>
 
     <select id="getAdminCategory"  resultType="com.ambow.pojo.Category">
-        select * from category ;
+        select * from category
     </select>
 
     <select id="getCartegortByCid" parameterType="java.lang.Integer" resultType="com.ambow.pojo.Category">
@@ -30,6 +30,18 @@
     <insert id="addCategory" parameterType="com.ambow.pojo.Category">
         insert  into category(cname,state)values (#{cname},#{state})
     </insert>
+
+    <select id="getCategoryLike" parameterType="java.lang.String" resultType="com.ambow.pojo.Category">
+        select * from category where cname like "%"#{cname}"%"
+    </select>
+
+    <select id="checkCategory" parameterType="java.lang.String" resultType="java.lang.Long">
+        select count(*) from category where cname=#{cname}
+    </select>
+
+    <select id="checkUpCname"  resultType="com.ambow.pojo.Category">
+        select * from category where cname=#{cname} and cid=#{cid}
+    </select>
 
 
 </mapper>

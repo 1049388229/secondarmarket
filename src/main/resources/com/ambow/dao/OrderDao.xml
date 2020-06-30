@@ -3,7 +3,10 @@
 <mapper namespace="com.ambow.dao.OrderDao" >
     <resultMap id="orderResultMap" type="com.ambow.pojo.Order" >
         <id column="oid" property="oid" jdbcType="VARCHAR" />
-        <result column="pid" property="pid" jdbcType="INTEGER" />
+        <id column="pname" property="pname" jdbcType="VARCHAR" />
+        <id column="pprice" property="pprice" jdbcType="FLOAT" />
+        <id column="pimage" property="pimage" jdbcType="VARCHAR" />
+
         <result column="order_price" property="order_price" jdbcType="FLOAT"/>
         <result column="buy_uid" property="buy_uid" jdbcType="VARCHAR" />
         <result column="sell_uid" property="sell_uid" jdbcType="VARCHAR"/>
@@ -41,17 +44,16 @@
 
     <select id="getMybuyOrder" resultMap="orderResultMap">
 
-       select u.*,n.*,p.* from orders n,user u,products p where n.pid=p.id  and n.sell_uid = u.user_id and n.buy_uid=#{uid} and order by order_date desc
+       select u.*,n.*from orders n,user u where  n.sell_uid = u.user_id and n.buy_uid=#{uid}  order by order_date desc
     </select>
     <select id="getMysellOrder" resultMap="orderResultMap">
-select u.*,n.*,p.* from orders n,user u,products p where n.pid=p.id  and n.buy_uid = u.user_id and n.sell_uid=#{uid} order by order_date desc
-
+       select u.*,n.* from orders n,user u where  n.buy_uid = u.user_id and n.sell_uid=#{uid} order by order_date desc
     </select>
 
     <insert id="addOrder" parameterType="com.ambow.pojo.Order">
-         insert into orders(oid,pid, order_price,buy_uid, sell_uid,dealdate,dealAddress,
+         insert into orders(oid,pname,pprice,pimage, order_price,buy_uid, sell_uid,dealdate,dealAddress,
       order_date,order_state)
-    values (#{oid,jdbcType=VARCHAR},#{pid,jdbcType=INTEGER},#{order_price,jdbcType=FLOAT}, #{buy_uid,jdbcType=VARCHAR}, #{sell_uid,jdbcType=VARCHAR},
+    values (#{oid,jdbcType=VARCHAR},#{pname,jdbcType=VARCHAR},#{pprice,jdbcType=FLOAT},#{pimage,jdbcType=VARCHAR},#{order_price,jdbcType=FLOAT}, #{buy_uid,jdbcType=VARCHAR}, #{sell_uid,jdbcType=VARCHAR},
       #{dealdate,jdbcType=VARCHAR},#{dealAddress,jdbcType=VARCHAR},#{order_date,jdbcType=VARCHAR},#{order_state,jdbcType=INTEGER})
     </insert>
     
@@ -63,9 +65,28 @@ select u.*,n.*,p.* from orders n,user u,products p where n.pid=p.id  and n.buy_u
         update orders set dealdate=#{dealdate}, dealAddress=#{dealAddress},order_state=#{order_state} where oid=#{oid}
     </update>
     
-    <select id="getAllOrder" resultType="orderResultMap">
-        select u.*,n.*,p.* from orders n,user u,products p
+    <select id="getAllOrder" resultMap="orderResultMap">
+        select * from orders
     </select>
+
+    <select id="getOrderInformationByOid" parameterType="java.lang.String" resultMap="orderResultMap">
+        select * from orders where oid=#{oid}
+    </select>
+
+
+    <select id="getOrderByOid" parameterType="java.lang.String" resultType="com.ambow.pojo.Order">
+        select * from orders where oid=#{oid}
+    </select>
+
+    <delete id="deleteOrder" parameterType="java.lang.String">
+        delete  from   orders where oid=#{oid}
+    </delete>
+
+    <select id="getOrderLike" parameterType="java.lang.String" resultType="com.ambow.pojo.Order">
+        select * from orders where oid like "%"#{oid}"%"
+    </select>
+
+
 
 
 

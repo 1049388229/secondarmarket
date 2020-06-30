@@ -9,6 +9,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -41,50 +42,61 @@
         }
     </style>
 </head>
+
+
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 订单管理 <span class="c-gray en">&gt;</span> 订单列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
     <div class="text-c">
-        <input type="text" name="" id="" placeholder=" 商品名称" style="width:250px" class="input-text">
-        <button name=""  class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜订单</button>
+        <form action="${pageContext.request.contextPath}/order/getOrderLike.do" method="post">
+
+            <input type="hidden" name="page" value="1">
+            <input type="hidden" name="size" value="10">
+            <input type="text" name="oid" id="oid" placeholder=" 订单编号" style="width:250px" class="input-text">
+            <button name=""  class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜订单</button>
+        </form>
+
     </div>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+
+
     <div class="mt-20">
         <table class="table table-border table-bordered table-bg table-hover table-sort">
             <thead>
             <tr class="text-c">
-                <th width="40"><input name="" type="checkbox" value=""></th>
-                <th width="80">订单编号</th>
+
+                <th>订单编号</th>
                 <th width="100">商品名称</th>
                 <th width="150">交易价格</th>
-                <th>交易时间</th>
-                <th>交易地点</th>
-                <th>width="100">下单时间</th>
-
+                <th>下单时间</th>
                 <th width="60">订单状态</th>
+                <th width="60">确认收货</th>
+                <th>订单详情</th>
                 <th width="100">操作</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${orders}" var="order">
+            <c:forEach items="${orders.list}" var="order">
                 <tr class="text-c">
-                    <td><input name="" type="checkbox" value=""></td>
+
 
                     <td>${order.oid}</td>
-                    <td>${order.product.name}</td>
+                    <td>${order.pname}</td>
                     <td>${order.order_price}</td>
-                    <td >${order.dealdate}</td>
-                    <td >${order.dealAddress}</td>
-                    <td >${order.order_date}</td>
+                    <td>${order.order_date}</td>
 
 
-                    <c:if test="${order.order_state eq '1'}">
+                    <c:if test="${order.order_state eq '2'}">
                         <td class="td-status"><span class="label label-success radius">已完成</span></td>
                     </c:if>
-                    <c:if test="${order.order_state eq '0'}">
-                        <td class="td-status"><span class="label label-success radius">待发货</span></td>
+                    <c:if test="${order.order_state eq '1'}">
+                        <td class="td-status"><span class="label label-success radius">卖家已确认</span></td>
                     </c:if>
-                    <td class="td-manage"><a style="text-decoration:none" href="${pageContext.request.contextPath}/product/selectProductBypid.do?pid=${product.id}" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                    <c:if test="${order.order_state eq '0'}">
+                        <td class="td-status"><span class="label label-success radius">待卖家确认</span></td>
+                    </c:if>
+                    <td class="td-status"><span class="label label-success radius"><a href="#" onclick="confirmOrder('${order.oid}')">确认收货</a></span></td>
+                    <td class="td-status"><span class="label label-success radius"><a href="${pageContext.request.contextPath}/order/getOrderInformationByOid.do?oid=${order.oid}">订单详情</a></span></td>
+                    <td class="td-manage"><a style="text-decoration:none" href="${pageContext.request.contextPath}/order/getOrderByOid.do?oid=${order.oid}" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" href="javascript:;"  onclick="deleteOrder('${order.oid}')" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -92,7 +104,7 @@
         <div class="text-c" >
             <ul >
                 <li>
-                    <a href="${pageContext.request.contextPath}/product/getAllProduct.do?page=1&size=${pageInfoProduct.pageSize}" aria-label="Previus" >首页</a>&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/product/getAllProduct.do?page=${pageInfoProduct.pageNum-1}&size=${pageInfoProduct.pageSize}">上一页</a><c:forEach begin="1" end="${pageInfoProduct.pages}" var="pageNum"> &nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/product/getAllProduct.do?page=${pageNum}&size=${pageInfoProduct.pageSize}">${pageNum}</a> &nbsp;&nbsp;&nbsp;</c:forEach>&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/product/getAllProduct.do?page=${pageInfoProduct.pageNum+1}&size=${pageInfoProduct.pageSize}">下一页</a>&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/product/getAllProduct.do?page=${pageInfoProduct.pages}&size=${pageInfoProduct.pageSize}">尾页</a>
+                    <a href="${pageContext.request.contextPath}/order/getAllOrder.do?page=1&size=${orders.pageSize}" aria-label="Previus" >首页</a>&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/order/getAllOrder.do?page=${orders.pageNum-1}&size=${orders.pageSize}">上一页</a><c:forEach begin="1" end="${orders.pages}" var="pageNum"> &nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/order/getAllOrder.do?page=${pageNum}&size=${orders.pageSize}">${pageNum}</a> &nbsp;&nbsp;&nbsp;</c:forEach>&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/order/getAllOrder.do?page=${orders.pageNum+1}&size=${orders.pageSize}">下一页</a>&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/order/getAllOrder.do?page=${orders.pages}&size=${orders.pageSize}">尾页</a>
                 </li>
 
             </ul>
@@ -116,7 +128,7 @@
         "bStateSave": true,//状态保存
         "aoColumnDefs": [
             //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-            {"orderable":false,"aTargets":[0,8]}// 制定列不参与排序
+            {"orderable":false,"aTargets":[0,5]}// 制定列不参与排序
         ]
     });
 
@@ -159,6 +171,61 @@
                 layer.msg('未通过', {icon:5,time:1000});
             });
     }
+
+    function deleteOrder(oid) {
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/order/adminDeleteOrder.do",
+            data: {"oid":oid},
+            dataType: "json",
+            async: false,
+            success: function(data){
+                var flag=data.flag;
+                var msg=data.msg;
+                if(flag=="1"){
+                    alert(msg) ;
+                    window.location.href="${pageContext.request.contextPath}/order/getAllOrder.do"
+
+                }else if(flag=="2"){
+                    alert(msg)
+                }else if (flag=="3"){
+                    alert(msg);
+                }else {
+                    alert(系统错误);
+                }
+            }
+        });
+
+    }
+
+
+
+
+        function confirmOrder(adminoid) {
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/order/adminQueRenOrder.do",
+                data: {"adminoid":adminoid},
+                dataType: "json",
+                async: false,
+                success: function(data){
+                    var flag=data.flag;
+                    var msg=data.msg;
+                    if(flag=="1"){
+                        alert(msg) ;
+                        window.location.href="${pageContext.request.contextPath}/order/getAllOrder.do"
+
+                    }else if(flag=="2"){
+                        alert(msg)
+                    }else{
+                        alert("系统错误");
+                    }
+                }
+            });
+        }
+
+
+
 
     /*图片-下架*/
     function picture_stop(obj,id){

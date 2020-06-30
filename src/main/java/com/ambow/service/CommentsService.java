@@ -10,4 +10,6 @@ public interface CommentsService {
     void addComments(Comments comments);
 
     List<Comments> getProductComments(int pid);
+
+    void deleteComments(int id);
 }

@@ -6,6 +6,7 @@ import com.ambow.pojo.User;
 import com.ambow.service.CategoryService;
 
 import com.ambow.util.UUIDUtils;
+import com.github.pagehelper.PageInfo;
 import net.sf.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import redis.clients.jedis.Jedis;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,12 +67,34 @@ public class CategoryController {
 
 
     @RequestMapping("/getAdminCatelogy.do")
-    public ModelAndView getAdminCatelogy(){
-        List<Category> categories=categoryService.getAdminCategory();
+    public ModelAndView getAdminCatelogy(@RequestParam(name = "page" ,required = true,defaultValue = "1")int page,@RequestParam(name = "size" ,required = true,defaultValue = "10")int size){
         ModelAndView mv=new ModelAndView();
-        mv.addObject("categories",categories);
+        List<Category> categories=categoryService.selectAllCatelogy(page,size);
+        PageInfo pageInfo=new PageInfo(categories);
+        mv.addObject("categories",pageInfo);
+
         mv.setViewName("admin/category_list");
         return mv;
+    }
+    @RequestMapping("/getCategoryLike.do")
+    public ModelAndView getCategoryLike(@RequestParam(name = "cname")String cname,@RequestParam(name = "page" ,required = true,defaultValue = "1")int page,@RequestParam(name = "size" ,required = true,defaultValue = "10")int size){
+
+        ModelAndView mv=new ModelAndView();
+        if (cname.equals("")||cname.equals(null)){
+            List<Category> categories=categoryService.selectAllCatelogy(page,size);
+            PageInfo pageInfo=new PageInfo(categories);
+            mv.addObject("categories",pageInfo);
+
+            mv.setViewName("admin/category_list");
+            return mv;
+        }else {
+            List<Category> categories = categoryService.getCategoryLike(cname, page, size);
+            PageInfo pageInfo = new PageInfo(categories);
+            mv.addObject("categories", pageInfo);
+
+            mv.setViewName("admin/category_list");
+            return mv;
+        }
     }
 
     @RequestMapping("/selectCategoryBycid.do")
@@ -125,5 +149,24 @@ public class CategoryController {
         map.put("flag", flag);
         map.put("msg", msg);
         return map;
+    }
+
+
+    @RequestMapping("/checkCategory.do")
+    @ResponseBody
+    public Boolean checkCategory(@RequestParam(name="cname")String cname) throws IOException {
+        boolean userIsExit = categoryService.checkCategory(cname);
+
+        return userIsExit;
+
+    }
+
+    @RequestMapping("/checkUpCname.do")
+    @ResponseBody
+    public Boolean checkUpCname(@RequestParam(name="cname")String cname,@RequestParam(name = "cid") int cid) throws IOException {
+        boolean userIsExit = categoryService.checkUpCname(cname,cid);
+
+        return userIsExit;
+
     }
 }

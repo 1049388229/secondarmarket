@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -28,7 +28,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/admin/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
-    <title>图片列表</title>
+    <title>商品列表</title>
 
     <style>
         .tablecss{
@@ -45,15 +45,20 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 商品管理 <span class="c-gray en">&gt;</span> 商品列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
     <div class="text-c">
-        <input type="text" name="" id="" placeholder=" 商品名称" style="width:250px" class="input-text">
-        <button name=""  class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜商品</button>
+        <form action="${pageContext.request.contextPath}/product/getProductLike.do" method="post">
+
+            <input type="hidden" name="page" value="1">
+            <input type="hidden" name="size" value="10">
+            <input type="text" name="name" id="name" placeholder=" 商品名称" style="width:250px" class="input-text">
+            <button name=""  class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜商品</button>
+        </form>
+
     </div>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="picture_add('添加商品','picture-add.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加商品 </a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
     <div class="mt-20">
         <table class="table table-border table-bordered table-bg table-hover table-sort">
             <thead>
             <tr class="text-c">
-                <th width="40"><input name="" type="checkbox" value=""></th>
+
                 <th width="80">ID</th>
                 <th width="100">商品类别</th>
                 <th width="150">商品图片</th>
@@ -68,11 +73,10 @@
             <tbody>
             <c:forEach items="${pageInfoProduct.list}" var="product">
             <tr class="text-c">
-                <td><input name="" type="checkbox" value=""></td>
 
                 <td>${product.id}</td>
                 <td>${product.category.cname}</td>
-                <td><a href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')"><img width="100" class="picture-thumb" src="${pageContext.request.contextPath}/product/${product.image}"></a></td>
+                <td><img width="100" class="picture-thumb" src="${pageContext.request.contextPath}/product/${product.image}"></td>
                 <td >${product.name}</td>
                 <td >${product.price}</td>
 
@@ -83,7 +87,7 @@
                 <c:if test="${product.status eq '0'}">
                     <td class="td-status"><span class="label label-success radius">已下架</span></td>
                 </c:if>
-                <td class="td-manage"><a style="text-decoration:none" href="${pageContext.request.contextPath}/product/selectProductBypid.do?pid=${product.id}" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                <td class="td-manage"><a style="text-decoration:none" href="${pageContext.request.contextPath}/product/selectProductBypid.do?pid=${product.id}" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="adminDeleteProduct('${product.id}')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
             </tr>
             </c:forEach>
             </tbody>
@@ -137,6 +141,29 @@
             content: url
         });
         layer.full(index);
+    }
+
+    function adminDeleteProduct(pid) {
+        $.ajax({
+            url:"${pageContext.request.contextPath}/product/deleteProduct.do",
+            type:"POST",
+            data:{"pid":pid},
+            dataType: "json",
+            success:function (data) {
+                var flag=data.flag;
+                var msg=data.msg;
+                if (flag=="1"){
+                    alert(msg);
+                    window.location.href="${pageContext.request.contextPath}/product/getAllProduct.do"
+                }else if(flag=="2"){
+                    alert(msg);
+                }else {
+                    alert("系统错误")
+                }
+            }
+
+
+        });
     }
 
     /*图片-审核*/

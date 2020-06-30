@@ -12,4 +12,6 @@ public interface NeedsService {
     List<Needs> getAllNeeds();
 
     void deleteNeed(int nid);
+
+    void deleteNeeds(int nid);
 }

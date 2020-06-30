@@ -29,4 +29,10 @@ public interface ProductService {
     void updateProduct(Product product);
 
     List<Product> likeProduct(String name);
+
+    void deleteProduct(int productId);
+
+    List<Product> getAllMyProducrByUid(String id);
+
+    List<Product> getProductLike(String name, int page, int size);
 }

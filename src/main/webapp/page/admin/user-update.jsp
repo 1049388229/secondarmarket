@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 1
@@ -37,8 +38,8 @@
 </head>
 <body>
 <article class="page-container">
-    <form class="form form-horizontal"  action="${pageContext.request.contextPath}/user/updateUser.do">
-        <input type="hidden" value="${user.user_id}" name="user_id">
+    <form class="form form-horizontal"   id="userUpdateForm" action="${pageContext.request.contextPath}/user/updateUser.do">
+        <input type="hidden" value="${user.user_id}" name="user_id" id="user_id">
         <input type="hidden" value="${user.state}" name="state">
         <input type="hidden" value="${user.createdate}" name="createdate">
         <div class="row cl">
@@ -67,17 +68,44 @@
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">qq：</label>
+            <label class="form-label col-xs-4 col-sm-2">学号：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="${user.qq}" placeholder="" id="keywords" name="qq">
+                <input type="text" class="input-text" value="${user.studentid}" placeholder="" id="studentid" name="studentid">
             </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">院系：</label>
+            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select name="yid" class="select" >
+                    <c:forEach items="${lists}" var="yuanxi">
+                    <c:if test="${yuanxi.id == user.yuanXi.id}">
+                        <option value="${yuanxi.id}"  selected="selected">${user.yuanXi.yname}</option>
+                    </c:if>
+                    <c:if test="${yuanxi.id != user.yuanXi.id}">
+                        <option value="${yuanxi.id}" >${yuanxi.yname}</option>
+                    </c:if>
+                </c:forEach>
+
+
+
+
+
+				</select>
+				</span> </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>用户状态：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select name="conditions" class="select" >
+                    <c:if test="${user.conditions eq '禁用'}">
+                        <option value="禁用"  selected="selected">禁用</option>
+                    </c:if>
+                    <c:if test="${user.conditions eq '正常'}">
+                        <option value="正常"  selected="selected">正常</option>
+                    </c:if>
                     <option value="正常" >正常</option>
-					<option value="禁用" >禁用</option>
+                    <option value="禁用" >禁用</option>
+
 
 				</select>
 				</span> </div>
@@ -108,6 +136,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/lib/ueditor/1.4.3/ueditor.config.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+
 <script type="text/javascript">
     $(function(){
         $('.skin-minimal input').iCheck({
@@ -270,7 +299,94 @@
         var ue = UE.getEditor('editor');
 
     });
+
+
+
+    jQuery.validator.addMethod("updatetelephone", function(value, element) {
+        var length = value.length;
+        var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+        return this.optional(element) || (length == 11 && mobile.test(value));
+    }, "请填写正确的手机号码");
+
+    jQuery.validator.addMethod("checkUpdateTelephone",function () {
+        var user_id=$.trim($("#user_id").val());
+        var telephone=$.trim($("#telephone").val());
+
+        var param={};
+        param.telephone=telephone;
+        param.user_id=user_id;
+
+        var flag=false;
+        $.ajax({
+            "async":false,
+            "url":"${pageContext.request.contextPath}/user/checkUpdateTelephone.do",
+            "data":param,
+            "type":"POST",
+            "dataType":"json",
+            "success":function (data) {
+                flag=data
+            }
+
+        });
+
+        return !flag;
+    });
+
+
+    $(function(){
+        $("#userUpdateForm").validate({
+            rules:{
+                "username":{
+                    "required":true
+                    //"checkUsername":true
+                },
+                "telephone":{
+                    "required":true,
+                    "updatetelephone":true,
+                    "checkUpdateTelephone":true
+                },
+                "password":{
+                    "required":true,
+                    "rangelength":[6,12]
+                },
+                "email":{
+                    "required":true,
+                    "email":true
+                },
+                "studentid":{
+                    "required":true,
+
+                }
+
+            },
+            messages:{
+                "username":{
+                    "required":"用户名不能为空",
+                    //"checkUsername":"用户名已存在"
+                },
+                "telephone":{
+                    "required":"手机号码不能为空",
+                    "updatetelephone":"手机号吗格式不正确",
+                    "checkUpdateTelephone":"手机号已经被注册"
+                },
+                "password":{
+                    "required":"密码不能为空",
+                    "rangelength":"密码长度6-12位"
+                },
+                "email":{
+                    "required":"邮箱不能为空",
+                    "email":"邮箱格式不正确"
+                },
+                "studentid":{
+                    "required":"学号不能为空",
+
+                }
+            }
+        });
+    });
+
 </script>
+
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>

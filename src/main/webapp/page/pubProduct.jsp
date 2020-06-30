@@ -70,16 +70,16 @@
 
                     <div class="comment-form">
                         <h2>发布商品</h2>
-                        <form  id="myForm"  action="${pageContext.request.contextPath}/product/pubProduct.do" class="moon-form" method="post" enctype="multipart/form-data">
+                        <form  id="pubProductForm"  action="${pageContext.request.contextPath}/product/pubProduct.do" class="moon-form" method="post" enctype="multipart/form-data">
                             <div class="input-box">
                                 商品名称：（*必填）
-                                <input type="text" placeholder="用户名" name="name" id="name">
+                                <input type="text" placeholder="商品名称" name="name" id="name">
                             </div>
 
                             <div class="input-box ">
                                 商品类别：（*必填）
 
-                               <select name="cid">
+                               <select name="caid">
                                    <c:forEach items="${catList}"   var="categoty">
                                    <option value="${categoty.cid}">${categoty.cname}</option>
                                    </c:forEach>
@@ -225,89 +225,39 @@
 
 
 
-    jQuery.validator.addMethod("telephone", function(value, element) {
-        var length = value.length;
-        var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
-        return this.optional(element) || (length == 11 && mobile.test(value));
-    }, "请填写正确的手机号码");
-
-    jQuery.validator.addMethod("checkTelephone",function (value,element,params) {
-
-        var flag=false;
-            $.ajax({
-                "async":false,
-                "url":"${pageContext.request.contextPath}/user/checkTelephone.do",
-                "data":{"telephone":value},
-                "type":"POST",
-                "dataType":"json",
-                "success":function (data) {
-                    flag=data
-                }
-
-            });
-
-        return !flag;
-    });
 
 
     $(function(){
-        $("#myForm").validate({
+        $("#pubProductForm").validate({
             rules:{
-                "username":{
+                "name":{
                     "required":true
                     //"checkUsername":true
                 },
-                "telephone":{
-                    "required":true,
-                    "telephone":true,
-                    "checkTelephone":true
-                },
-                "password":{
-                    "required":true,
-                    "rangelength":[6,12]
-                },
-                "rePassword":{
-                    "required":true,
-                    "rangelength":[6,12],
-                    "equalTo":"#password"
-                },
-                "email":{
-                    "required":true,
-                    "email":true
-                },
-                "qq":{
+                "price":{
                     "required":true,
 
-                }
+                },
+                "images":{
+                    "required":true,
+
+                },
 
             },
             messages:{
-                "username":{
+                "name":{
                     "required":"用户名不能为空",
                     //"checkUsername":"用户名已存在"
                 },
-                "telephone":{
-                    "required":"手机号码不能为空",
-                    "telephone":"手机号吗格式不正确",
-                    "checkTelephone":"手机号已经被注册"
-                },
-                "password":{
-                    "required":"密码不能为空",
-                    "rangelength":"密码长度6-12位"
-                },
-                "rePassword":{
-                    "required":"密码不能为空",
-                    "rangelength":"密码长度6-12位",
-                    "equalTo":"两次密码不一致"
-                },
-                "email":{
-                    "required":"邮箱不能为空",
-                    "email":"邮箱格式不正确"
-                },
-                "qq":{
-                    "required":"QQ不能为空",
+                "price":{
+                    "required":"商品价格不能为空",
 
-                }
+                },
+                "images":{
+                    "required":"图片未选择",
+
+                },
+
             }
         });
     });

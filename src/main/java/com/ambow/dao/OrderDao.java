@@ -18,4 +18,14 @@ public interface OrderDao {
     void updateOrder(Order order);
 
     List<Order> getAllOrder();
+
+    Order getOrderInformationByOid(String oid);
+
+    Order getOrderByOid(String oid);
+
+    List<Order> getOrderBypid(int pid);
+
+    void deleteOrder(String oid);
+
+    List<Order> getOrderLike(String oid);
 }

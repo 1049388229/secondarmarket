@@ -34,46 +34,62 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户管理 <span class="c-gray en">&gt;</span> 用户列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
     <div class="text-c">
-        <button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
 
 
-        <input type="text" name="" id="" placeholder=" 用户名称" style="width:250px" class="input-text">
-        <button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+<form action="${pageContext.request.contextPath}/user/getUserLike.do" method="post">
+
+        <input type="hidden" name="page" value="1">
+        <input type="hidden" name="size" value="10">
+        <input type="text" name="username" id="username" placeholder=" 用户名称" style="width:250px" class="input-text">
+        <button name="selectUser" id="selectUser" class="btn btn-success" type="submit" ><i class="Hui-iconfont" >&#xe665;</i> 搜用户</button>
+</form>
     </div>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" data-title="添加用户" data-href="article-add.html" onclick="Hui_admin_tab(this)" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+
+
     <div class="mt-20">
         <table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
             <thead>
             <tr class="text-c">
-                <th width="25"><input type="checkbox" name="" value=""></th>
+
                 <th width="120">ID</th>
                 <th width="80">用户名</th>
                 <th width="80">手机号</th>
                 <th width="80">密码</th>
                 <th width="75">邮箱</th>
-                <th width="60">qq</th>
+                <th width="60">学号</th>
+                <th width="60">院系</th>
                 <th width="60">注册时间</th>
                 <th width="60">用户状态</th>
                 <th width="120">操作</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="user" items="${userList}">
+            <c:forEach var="user" items="${userList.list}">
             <tr class="text-c">
-                <td><input type="checkbox" value="" name=""></td>
+
                 <td>${user.user_id}</td>
                 <td>${user.username}</td>
                 <td>${user.telephone}</td>
                 <td>${user.password}</td>
                 <td>${user.email}</td>
-                <td>${user.qq}</td>
+                <td>${user.studentid}</td>
+                <td>${user.yuanXi.yname}</td>
                 <td>${user.createdate}</td>
                 <td class="td-status"><span class="label label-success radius">${user.conditions}</span></td>
-                <td class="f-14 td-manage"> <a style="text-decoration:none"  href="${pageContext.request.contextPath}/user/selectUserbyid.do?uid=${user.user_id}" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none"  href="${pageContext.request.contextPath}/user/deletUser.do?uid=${user.user_id}" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                <td class="f-14 td-manage"> <a style="text-decoration:none"  href="${pageContext.request.contextPath}/user/selectUserbyid.do?uid=${user.user_id}" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> </td>
             </tr>
             </c:forEach>
             </tbody>
+
         </table>
+        <div class="text-c" >
+            <ul >
+                <li>
+                    <a href="${pageContext.request.contextPath}/user/getAllUser.do?page=1&size=${userList.pageSize}" aria-label="Previus" >首页</a>&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/user/getAllUser.do?page=${userList.pageNum-1}&size=${userList.pageSize}">上一页</a><c:forEach begin="1" end="${userList.pages}" var="pageNum"> &nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/user/getAllUser.do?page=${pageNum}&size=${userList.pageSize}">${pageNum}</a> &nbsp;&nbsp;&nbsp;</c:forEach>&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/user/getAllUser.do?page=${userList.pageNum+1}&size=${userList.pageSize}">下一页</a>&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/user/getAllUser.do?page=${userList.pages}&size=${userList.pageSize}">尾页</a>
+                </li>
+
+            </ul>
+        </div>
     </div>
 </div>
 <!--_footer 作为公共模版分离出去-->
@@ -84,7 +100,7 @@
 
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<!--<script type="text/javascript" src="${pageContext.request.contextPath}/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>-->
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
     $('.table-sort').dataTable({
@@ -93,7 +109,7 @@
         "pading":false,
         "aoColumnDefs": [
             //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-            {"orderable":false,"aTargets":[0,8]}// 不参与排序的列
+            {"orderable":false,"aTargets":[0,10]}// 不参与排序的列
         ]
     });
 
@@ -177,6 +193,27 @@
         $(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">待审核</span>');
         $(obj).parents("tr").find(".td-manage").html("");
         layer.msg('已提交申请，耐心等待审核!', {icon: 1,time:2000});
+    }
+
+    function selectlikeUser() {
+        var username=$.trim($("#username").val());
+        alert(username)
+        var page=1;
+        var size=10;
+        alert(page)
+        var param={};
+        param.username=username;
+        param.page=page;
+        param.size=size;
+        alert(size)
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/user/getUserLike.do",
+            data: param,
+            dataType: "json",
+            async: false,
+        });
+
     }
 
 </script>

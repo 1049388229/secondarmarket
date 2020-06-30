@@ -3,7 +3,7 @@ package com.ambow.pojo;
 public class Product {
     private Integer id;
 
-    private Integer cid;
+    private Integer caid;
 
     private String user_id;
 
@@ -25,6 +25,16 @@ public class Product {
     private User user;
 
     private Category category;
+
+    private YuanXi yuanxi;
+
+    public YuanXi getYuanxi() {
+        return yuanxi;
+    }
+
+    public void setYuanxi(YuanXi yuanxi) {
+        this.yuanxi = yuanxi;
+    }
 
     public Category getCategory() {
         return category;
@@ -58,12 +68,12 @@ public class Product {
         this.id = id;
     }
 
-    public Integer getCid() {
-        return cid;
+    public Integer getCaid() {
+        return caid;
     }
 
-    public void setCid(Integer cid) {
-        this.cid = cid;
+    public void setCaid(Integer caid) {
+        this.caid = caid;
     }
 
     public String getUser_id() {

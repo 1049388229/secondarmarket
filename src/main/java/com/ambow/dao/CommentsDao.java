@@ -9,4 +9,6 @@ public interface CommentsDao {
     void addComments(Comments comments);
 
     List<Comments> getProductComments(int pid);
+
+    void deleteComments(int id);
 }

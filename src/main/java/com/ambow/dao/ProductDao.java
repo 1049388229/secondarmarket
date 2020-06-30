@@ -10,7 +10,7 @@ public interface ProductDao {
 
     List<Product> getAllProduct();
 
-    List<Product> getAllProductBycid(int cid);
+    List<Product> getAllProductBycid(int caid);
 
     Product getProductBypid(int id);
 
@@ -27,4 +27,10 @@ public interface ProductDao {
     void updateProduct(Product product);
 
     List<Product> likeProduct(String name);
+
+    void deleteProduct(int id);
+
+    List<Product> getAllMyProducrByUid(String user_id);
+
+    List<Product> getProductLike(String name);
 }

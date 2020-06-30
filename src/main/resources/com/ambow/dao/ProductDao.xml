@@ -3,7 +3,7 @@
 <mapper namespace="com.ambow.dao.ProductDao" >
     <resultMap id="productResultMap" type="com.ambow.pojo.Product" >
         <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="cid" property="cid" jdbcType="INTEGER" />
+        <result column="caid" property="caid" jdbcType="INTEGER" />
         <result column="user_id" property="user_id" jdbcType="VARCHAR" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="image" property="image" jdbcType="VARCHAR" />
@@ -12,19 +12,23 @@
         <result column="status" property="status" jdbcType="INTEGER" />
         <result column="describle" property="describle" jdbcType="VARCHAR" />
         <association property="user" javaType="com.ambow.pojo.User">
-            <id column="user_id" property="user_id" jdbcType="VARCHAR" />
             <result column="username" property="username" jdbcType="VARCHAR" />
             <result column="telephone" property="telephone" jdbcType="VARCHAR" />
             <result column="password" property="password" jdbcType="VARCHAR" />
             <result column="email" property="email" jdbcType="VARCHAR" />
-            <result column="QQ" property="qq" jdbcType="VARCHAR" />
+            <result column="studentid" property="studentid" jdbcType="VARCHAR" />
+            <result column="yid" property="yid" jdbcType="INTEGER" />
             <result column="createdate" property="createdate" jdbcType="VARCHAR" />
             <result column="state" property="state" jdbcType="INTEGER" />
-            <result column="conditions" property="conditions" jdbcType="VARCHAR" />
+            <result column="condition" property="condition" jdbcType="VARCHAR" />
         </association>
         <association property="category" javaType="com.ambow.pojo.Category" >
             <id column="cid" property="cid" jdbcType="INTEGER" />
             <result column="cname" property="cname" jdbcType="VARCHAR" />
+        </association>
+        <association property="yuanxi" javaType="com.ambow.pojo.YuanXi">
+            <id column="id" property="id" jdbcType="INTEGER" />
+            <result column="yname" property="yname" jdbcType="VARCHAR" />
         </association>
 
     </resultMap>
@@ -34,7 +38,7 @@
     </select>
 
     <select id="getAllProductBycid"  parameterType="java.lang.Integer" resultType="com.ambow.pojo.Product">
-        select * from products where status=1 and cid=#{cid}
+        select * from products where status=1 and caid=#{cid}
     </select>
 
     <select id="getProductBypid"  parameterType="java.lang.Integer" resultType="com.ambow.pojo.Product">
@@ -45,41 +49,47 @@
         select * from products where status=1 and user_id=#{user_id}
     </select>
     <insert id="pubMyproduct" parameterType="com.ambow.pojo.Product">
-        insert into products (cid,user_id, name, image,
+        insert into products (caid,user_id, name, image,
       price, start_time,describle, status)
-    values (#{cid,jdbcType=INTEGER},#{user_id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR},
+    values (#{caid,jdbcType=INTEGER},#{user_id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR},
       #{price,jdbcType=FLOAT}, #{start_time,jdbcType=VARCHAR},#{describle,jdbcType=VARCHAR},
       #{status,jdbcType=INTEGER})
     </insert>
     
     <select id="getProductUserBypid" parameterType="java.lang.Integer" resultMap="productResultMap">
-        select u.*,p.*from user u,products p where u.user_id=p.user_id and p.id=#{id}
+         select u.*,p.*,y.* from user u,products p, yuanxi y where u.user_id=p.user_id and u.yid=y.id and p.id=#{id}
     </select>
 
     <select id="getAllProducts" parameterType="java.lang.Integer" resultMap="productResultMap">
-        select c.*,p.*from category c,products p where c.cid=p.cid
+        select c.*,p.*from category c,products p where c.cid=p.caid
+
     </select>
 
     <select id="getAllProductBypid"  parameterType="java.lang.Integer" resultType="com.ambow.pojo.Product">
-        select p.* ,c.* from products p,category c where c.cid=p.cid and p.id=#{id}
+        select p.* ,c.* from products p,category c where c.cid=p.caid and p.id=#{id}
     </select>
 
 
     <update id="updateProduct" parameterType="com.ambow.pojo.Product">
-        update products set cid=#{cid},user_id=#{user_id},name=#{name},image=#{image},price=#{price},start_time=#{start_time},
+        update products set caid=#{caid},user_id=#{user_id},name=#{name},image=#{image},price=#{price},start_time=#{start_time},
         describle=#{describle},status=#{status} where id=#{id}
     </update>
-
 
     <select id="likeProduct" parameterType="java.lang.String" resultType="com.ambow.pojo.Product">
         select * from products where name like "%"#{name}"%"
     </select>
 
+    <delete id="deleteProduct" parameterType="java.lang.Integer">
+        delete  from products where id=#{id}
+    </delete>
 
+    <select id="getAllMyProducrByUid" parameterType="java.lang.String" resultType="com.ambow.pojo.Product">
+        select * from products where user_id=#{user_id}
+    </select>
 
-
-
-
+    <select id="getProductLike" parameterType="java.lang.String" resultMap="productResultMap">
+        select c.*,p.*from category c,products p where c.cid=p.caid and name like "%"#{name}"%"
+    </select>
 
 
 </mapper>

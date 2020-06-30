@@ -59,6 +59,21 @@
         }
     }
 
+    function isyezhengma() {
+        var flag = false;
+        var yanzhengma = $.trim($("#yzm").val());
+        $("#yzm").val(yanzhengma);
+        if (yanzhengma.length < 1) {
+            $("#yzmspan").html("验证码不能为空");
+            $("#yzmspan").show();
+            return flag;
+        } else {
+            flag -= true;
+            return flag;
+        }
+
+    }
+
     function isPwd(){
         var pwd=$.trim($("#password").val());
         $("#password").val(pwd);
@@ -72,14 +87,25 @@
         }
     }
 
+    function updateUseryanzhengma(){
+        document.getElementById('isyzm').src= '${pageContext.request.contextPath}/yanzhengma/index.do?t='+new Date().getTime();
+
+    }
+    function registerJsp(){
+        window.location.href="${pageContext.request.contextPath}/page/register.jsp";
+
+    }
+
     function submitlogin(){
-        if(isTelephone()&&isPwd()){
+        if(isTelephone()&&isPwd()&&isyezhengma()){
             var phone=$.trim($("#telephone").val());
             var pwd=$.trim($("#password").val());
+            var yzm=$.trim($("#yzm").val());
 
             var param={};
             param.telephone=phone;
             param.password=pwd;
+            param.yzm=yzm;
 
             $.ajax({
                 type: "POST",
@@ -87,22 +113,25 @@
                 data: param,
                 dataType: "json",
                 async: false,
-                success: function(data){
-                    var flag=data.flag;
-                    var msg=data.msg;
-                    if(flag=="1"){
+                success: function(data) {
+                    var flag = data.flag;
+                    var msg = data.msg;
+                    if (flag == "1") {
                         $("#telephonespan").html("手机号码不存在");
                         $("#telephonespan").show();
-                    }else if(flag=="2"){
+                    } else if (flag == "2") {
                         $("#pwdspan").html("密码错误");
                         $("#pwdspan").show();
                         $("#telephonespan").hide();
-                    }else if(flag=="3"){
+                    } else if (flag == "3") {
                         alert(msg);
 
-                    }else if(flag=="4"){
+                    } else if (flag == "4") {
                         alert(msg);
-                    }else if(flag=="5"){
+                    } else if (flag == "5"){
+                            alert(msg);
+                    }
+                    else if(flag=="6"){
                         alert(msg);
                         window.location.href="${pageContext.request.contextPath}/product/newsProduct.do"
 
@@ -147,6 +176,17 @@
                                 <input type="password" name="password" placeholder="密码" class="form-password form-control" id="password" onblur="isPwd()">
                                 <i id="pwdspan" ></i>
                             </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="password">验证码</label>
+                                <input type="text" name="text" placeholder="验证码" class="form-password form-control" id="yzm" onblur="isyezhengma()">
+                                <i id="yzmspan" ></i>
+                            </div>
+                            <div class="form-group">
+                                <img src="${pageContext.request.contextPath}/yanzhengma/index.do" alt="验证码" height="50px;" width="50%" id="isyzm" onclick="updateUseryanzhengma();">&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/page/register.jsp" style="font-size: 25px" >没有账户,点此注册</a>
+                                <label class="sr-only" for="password"><a href="/user/userRegieterjsp.do">点击注册</a></label>
+                                </br>
+                            </div>
+
                             <button type="button" class="btn" onclick="submitlogin()">登录</button>
 
                         </form>

@@ -6,29 +6,13 @@ public class User {
     private String telephone;
     private String password;
     private String email;
-    private String qq;
+    private String studentid;
+    private Integer yid;
     private String createdate;
     private Integer state;
-    private String activeCode;
+
     private String conditions;
-
-
-
-    public String getConditions() {
-        return conditions;
-    }
-
-    public void setConditions(String conditions) {
-        this.conditions = conditions;
-    }
-
-    public String getActiveCode() {
-        return activeCode;
-    }
-
-    public void setActiveCode(String activeCode) {
-        this.activeCode = activeCode;
-    }
+    private YuanXi yuanXi;
 
     public String getUser_id() {
         return user_id;
@@ -70,12 +54,20 @@ public class User {
         this.email = email;
     }
 
-    public String getQq() {
-        return qq;
+    public String getStudentid() {
+        return studentid;
     }
 
-    public void setQq(String qq) {
-        this.qq = qq;
+    public void setStudentid(String studentid) {
+        this.studentid = studentid;
+    }
+
+    public Integer getYid() {
+        return yid;
+    }
+
+    public void setYid(Integer yid) {
+        this.yid = yid;
     }
 
     public String getCreatedate() {
@@ -92,5 +84,21 @@ public class User {
 
     public void setState(Integer state) {
         this.state = state;
+    }
+
+    public String getConditions() {
+        return conditions;
+    }
+
+    public void setConditions(String conditions) {
+        this.conditions = conditions;
+    }
+
+    public YuanXi getYuanXi() {
+        return yuanXi;
+    }
+
+    public void setYuanXi(YuanXi yuanXi) {
+        this.yuanXi = yuanXi;
     }
 }

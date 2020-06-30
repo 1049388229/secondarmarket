@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ambow.dao.AdminDao" >
-    <resultMap id="userResultMap" type="com.ambow.pojo.Admin" >
+    <resultMap id="adminResultMap" type="com.ambow.pojo.Admin" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="username" property="username" jdbcType="VARCHAR" />
         <result column="telephone" property="telephone" jdbcType="VARCHAR" />
@@ -12,8 +12,17 @@
     </resultMap>
 
     <select id="adminLogin"  resultType="com.ambow.pojo.Admin">
-        select * from admin where username=#{username,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
+        select * from admin where telephone=#{telephone,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
     </select>
+
+    <select id="checkTelephone" parameterType="java.lang.String" resultType="com.ambow.pojo.Admin">
+        select * from admin where telephone=#{telephone}
+    </select>
+
+    <update id="updatePassword" >
+        update admin set password=#{password} where id=#{id}
+    </update>
+
 
 
 

@@ -3,6 +3,7 @@ package com.ambow.service.impl;
 import com.ambow.dao.UserDao;
 import com.ambow.pojo.User;
 import com.ambow.service.UserService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -81,6 +82,47 @@ public class UserServiceImpl implements UserService {
         }else {
             return true;
         }
+    }
+
+    @Override
+    public List<User> getAdminAllUser(int page, int size) {
+        PageHelper.startPage(page,size);
+        return userDao.getAllUser();
+    }
+
+    @Override
+    public boolean checkStudentId(String studentid) {
+        Long isExits=0L;
+        try{
+            isExits=userDao.checkStudentId(studentid);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return isExits>0?true:false;
+    }
+
+    @Override
+    public List<User> getUserLike(String username, int page, int size) {
+        PageHelper.startPage(page,size);
+        return userDao.getUserLike(username);
+
+    }
+
+    @Override
+    public boolean checkUpdateTelephone(String user_id, String telephone) {
+        User user=userDao.checkUpdateTelephone(user_id,telephone);
+        if (user==null){
+            Long isExits=0L;
+            try{
+                isExits=userDao.checkTelephone(telephone);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return isExits>0?true:false;
+        }else {
+            return false;
+        }
+
     }
 
     @Override

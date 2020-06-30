@@ -18,4 +18,16 @@ public interface OrderService {
      void updateOrder(Order order);
 
     List<Order> getAllOrder();
+
+    Order getOrderInformationByOid(String oid);
+
+    Order getOrderByOid(String oid);
+
+    List<Order> getOrderBypid(int pid);
+
+    void deleteOrder(String oid);
+
+    List<Order> selectAllOrder(int page, int size);
+
+    List<Order> getOrderLike(String oid, int page, int size);
 }

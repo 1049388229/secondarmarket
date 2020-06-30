@@ -13,7 +13,38 @@ public class AdminServiceImpl implements AdminService {
     private AdminDao adminDao;
 
     @Override
-    public Admin adminLogin(String username, String password) {
-        return adminDao.adminLogin(username,password);
+    public Admin adminLogin(String telephone, String password) {
+        return adminDao.adminLogin(telephone,password);
+    }
+
+    @Override
+    public Boolean checkTelephone(String telephone) {
+        Admin admin=adminDao.checkTelephone(telephone);
+        if (admin==null){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    @Override
+    public Boolean checkAdmin(String telephone, String password) {
+        Admin admin=adminDao.adminLogin(telephone,password);
+        if (admin==null){
+            return false;
+        }else {
+
+            return true;
+        }
+    }
+
+    @Override
+    public Boolean updatePassword(String password, int id) {
+        try {
+            adminDao.updatePassword(password,id);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }

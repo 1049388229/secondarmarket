@@ -25,4 +25,12 @@ public interface UserService {
     void deletUser(String uid);
 
     Boolean checkUser(String telephone, String password);
+
+    List<User> getAdminAllUser(int page, int size);
+
+    boolean checkStudentId(String studentid);
+
+    List<User> getUserLike(String username, int page, int size);
+
+    boolean checkUpdateTelephone(String user_id, String telephone);
 }

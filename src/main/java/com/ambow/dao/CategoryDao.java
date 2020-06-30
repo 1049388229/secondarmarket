@@ -1,6 +1,7 @@
 package com.ambow.dao;
 
 import com.ambow.pojo.Category;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,4 +18,10 @@ public interface CategoryDao {
     void updateCategory(Category category);
 
     void addCategory(Category category);
+
+    List<Category> getCategoryLike(String cname);
+
+    Long checkCategory(String cname);
+
+    Category checkUpCname(@Param("cname") String cname, @Param("cid") int cid);
 }

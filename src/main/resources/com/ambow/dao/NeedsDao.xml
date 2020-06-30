@@ -35,4 +35,8 @@
     <delete id="deleteNeed" parameterType="java.lang.Integer">
         DELETE  from needs where nid=#{nid}
     </delete>
+
+    <delete id="deleteNeeds" parameterType="java.lang.Integer">
+        DELETE  from needs where nid=#{nid}
+    </delete>
 </mapper>

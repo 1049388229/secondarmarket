@@ -9,7 +9,7 @@ public interface UserDao {
 
     void userRegist(User user);
 
-    User activeUser(String activeCode);
+    User activeUser(String user_id);
 
     void updateUser(User user);
 
@@ -26,4 +26,10 @@ public interface UserDao {
     User selectUserByTelephone(String telephone);
 
     Boolean checkUser(String telephone, String password);
+
+    Long checkStudentId(String studentid);
+
+    List<User> getUserLike(String username);
+
+    User checkUpdateTelephone(@Param("user_id") String user_id, @Param("telephone") String telephone);
 }
